@@ -116,6 +116,7 @@ footer{color:var(--muted);font-size:13.5px;margin-top:36px;line-height:1.85;}
   <p class="lead">カテゴリ・タグ候補・重量とサイズの注意点</p>
   <p class="updated">更新日 2026-09-19</p>
   <p class="updated">改訂: タグ案を部位グループ方式に変更、概算送料を追加</p>
+  <p class="updated">改訂2: 概算送料をサーチャージ込みに更新</p>
   <div class="status">案の段階（タグは未確定、出品はまだ行っていない）</div>
 
   <section class="step" id="about">
@@ -550,25 +551,25 @@ footer{color:var(--muted);font-size:13.5px;margin-top:36px;line-height:1.85;}
       </table>
     </div>
 
-    <h3>3-4. 概算のクーリエ送料（米国向け）</h3>
-    <p><span class="lab fact">Fact</span> セラー保有の2026年eBay SpeedPAK送料表（DHL Zone 10、FedEx IP、FedEx FICP）による金額です。FedEx FICPの下限＝米国西部(E)・上限＝米国東部/カナダ(F)のゾーン料金です。請求重量＝max(実重量, 容積重量)、容積重量＝縦×横×高さ(cm)÷5,000。除数5,000は、セラー保有のeLogi DHL送料目安表（2026-08）に印刷されている数値です（<span class="lab fact">Fact</span>）。SpeedPAKの3表そのものに同じ除数が印刷されているわけではなく、同じ計算方法を使っていると仮定しています（<span class="lab infer">目安</span>）。燃油サーチャージ・リモートエリア/住宅地サーチャージ・税の扱いは、表に記載がなく<span class="lab unknown">Unknown</span>です。</p>
-    <p>下の金額は、3-3の梱包サイズ・重量の目安レンジから計算した請求重量の範囲を、そのまま送料表に当てはめた概算です。</p>
+    <h3>3-4. 概算のクーリエ送料（米国向け・サーチャージ込み）</h3>
+    <p><span class="lab fact">Fact</span> 一括シートに組み込まれているクーリエ送料の計算式を使いました: 送料 ＝（基本料金 ＋ 500gごとの追加料金）×（1＋燃油サーチャージ率）×（1−Cpass割引3%）。パラメータはコードの既定値です: FedEx＝燃油29.75%・追加115円/500g、DHL＝燃油30%・追加96円/500g、Cpass割引3%（<span class="lab fact">Fact</span>: コードの既定値。実際の値は作業シートのV1・V2・W2・Y1・Y2で上書きでき、上書き値が違えば金額も変わります）。エコノミー（CE）はSpeedPAK送料表にサーチャージが込みのため、この式は使いません。基本料金は2026年のeBay SpeedPAK送料表（DHL Zone 10、FedEx E=米国西部/F=米国東部）です。請求重量＝max(実重量, 縦×横×高さ(cm)÷5,000)。除数5,000はeLogi送料目安表に明記された数値で、SpeedPAKも同じ除数を使っていると仮定しています（<span class="lab infer">目安</span>）。遠隔地料金・住宅配達料金・大型貨物の追加料金・税は、この式に含まれていません（<span class="lab unknown">Unknown</span>）。</p>
+    <p>下の金額は、3-3の梱包サイズ・重量の目安レンジから計算した請求重量の範囲に、上の計算式（燃油サーチャージ・Cpass割引込み）を当てはめた概算です。</p>
     <div class="tablebox">
       <table>
-        <thead><tr><th>タグ</th><th>請求重量の目安</th><th>DHL SpeedPAK（円）</th><th>FedEx FICP（円、下限=西部E・上限=東部F）</th><th>FedEx IP（円）</th></tr></thead>
+        <thead><tr><th>タグ</th><th>請求重量の目安</th><th>DHL（円）</th><th>FedEx FICP（円、下限=西部E・上限=東部F）</th><th>FedEx IP（円）</th></tr></thead>
         <tbody>
-          <tr><td><span class='tagname'>車部品 小物</span></td><td>0.5〜3kg</td><td class='num'>2,454〜3,761</td><td class='num'>2,082〜3,540</td><td class='num'>2,331〜3,755</td></tr>
-          <tr><td><span class='tagname'>車部品 ライト</span></td><td>9〜32kg</td><td class='num'>8,958〜32,096</td><td class='num'>7,131〜31,983</td><td class='num'>7,409〜33,652</td></tr>
-          <tr><td><span class='tagname'>車部品 ミラー</span></td><td>3.5〜10.5kg</td><td class='num'>4,203〜10,469</td><td class='num'>3,549〜9,346</td><td class='num'>3,717〜9,967</td></tr>
-          <tr><td><span class='tagname'>車部品 外装 小</span></td><td>2〜24kg</td><td class='num'>3,045〜24,059</td><td class='num'>3,061〜23,721</td><td class='num'>2,829〜25,240</td></tr>
-          <tr><td><span class='tagname'>車部品 外装 大</span></td><td>43〜240kg</td><td class='num'>44,133〜(範囲外)</td><td class='num'>42,110〜(範囲外)</td><td class='num'>42,753〜(範囲外)</td></tr>
-          <tr><td><span class='tagname'>車部品 内装 大</span></td><td>32〜128kg</td><td class='num'>32,096〜128,391</td><td class='num'>29,684〜(範囲外)</td><td class='num'>31,085〜(範囲外)</td></tr>
-          <tr><td><span class='tagname'>車部品 機関</span></td><td>2〜32kg</td><td class='num'>3,045〜32,096</td><td class='num'>3,061〜31,983</td><td class='num'>2,829〜33,652</td></tr>
-          <tr><td><span class='tagname'>車部品 ホイール(1本)</span></td><td>12.5〜29.5kg</td><td class='num'>12,481〜30,089</td><td class='num'>11,323〜29,916</td><td class='num'>12,225〜31,550</td></tr>
-          <tr><td><span class='tagname'>車部品 重量物</span></td><td>40〜200kg</td><td class='num'>40,120〜(範囲外)</td><td class='num'>38,281〜(範囲外)</td><td class='num'>38,866〜(範囲外)</td></tr>
-          <tr><td><span class='tagname'>バイク部品 小物</span></td><td>0.5〜2kg</td><td class='num'>2,454〜3,045</td><td class='num'>2,082〜3,108</td><td class='num'>2,331〜2,859</td></tr>
-          <tr><td><span class='tagname'>バイク部品 中</span></td><td>4〜32kg</td><td class='num'>4,568〜32,096</td><td class='num'>3,973〜31,983</td><td class='num'>4,204〜33,652</td></tr>
-          <tr><td><span class='tagname'>バイク部品 大</span></td><td>24〜173kg</td><td class='num'>24,059〜(範囲外)</td><td class='num'>21,966〜(範囲外)</td><td class='num'>23,314〜(範囲外)</td></tr>
+          <tr><td><span class='tagname'>車部品 小物</span></td><td>0.5〜3kg</td><td class='num'>3,094〜5,348</td><td class='num'>2,620〜5,179</td><td class='num'>2,934〜5,450</td></tr>
+          <tr><td><span class='tagname'>車部品 ライト</span></td><td>9〜32kg</td><td class='num'>13,354〜48,100</td><td class='num'>11,435〜49,371</td><td class='num'>11,785〜51,472</td></tr>
+          <tr><td><span class='tagname'>車部品 ミラー</span></td><td>3.5〜10.5kg</td><td class='num'>6,026〜15,623</td><td class='num'>5,335〜14,657</td><td class='num'>5,547〜15,439</td></tr>
+          <tr><td><span class='tagname'>車部品 外装 小</span></td><td>2〜24kg</td><td class='num'>4,203〜36,028</td><td class='num'>4,287〜36,657</td><td class='num'>3,995〜38,569</td></tr>
+          <tr><td><span class='tagname'>車部品 外装 大</span></td><td>43.5〜240kg</td><td class='num'>66,063〜(範囲外)</td><td class='num'>65,446〜(範囲外)</td><td class='num'>66,255〜(範囲外)</td></tr>
+          <tr><td><span class='tagname'>車部品 内装 大</span></td><td>32〜128kg</td><td class='num'>48,100〜192,649</td><td class='num'>46,478〜(範囲外)</td><td class='num'>48,241〜(範囲外)</td></tr>
+          <tr><td><span class='tagname'>車部品 機関</span></td><td>2〜32kg</td><td class='num'>4,203〜48,100</td><td class='num'>4,287〜49,371</td><td class='num'>3,995〜51,472</td></tr>
+          <tr><td><span class='tagname'>車部品 ホイール(1本)</span></td><td>12.5〜29.5kg</td><td class='num'>18,644〜44,963</td><td class='num'>17,725〜46,046</td><td class='num'>18,860〜48,103</td></tr>
+          <tr><td><span class='tagname'>車部品 重量物</span></td><td>40〜200kg</td><td class='num'>60,155〜(範囲外)</td><td class='num'>59,614〜(範囲外)</td><td class='num'>60,350〜(範囲外)</td></tr>
+          <tr><td><span class='tagname'>バイク部品 小物</span></td><td>0.5〜2kg</td><td class='num'>3,094〜4,203</td><td class='num'>2,620〜4,346</td><td class='num'>2,934〜4,032</td></tr>
+          <tr><td><span class='tagname'>バイク部品 中</span></td><td>4〜32kg</td><td class='num'>6,608〜48,100</td><td class='num'>6,013〜49,371</td><td class='num'>6,304〜51,472</td></tr>
+          <tr><td><span class='tagname'>バイク部品 大</span></td><td>24〜173kg</td><td class='num'>36,028〜(範囲外)</td><td class='num'>34,448〜(範囲外)</td><td class='num'>36,145〜(範囲外)</td></tr>
         </tbody>
       </table>
     </div>
@@ -577,7 +578,8 @@ footer{color:var(--muted);font-size:13.5px;margin-top:36px;line-height:1.85;}
       (2) 重要な点: ライト・ミラー・外装のような部品は、請求重量が実重量ではなく<strong>容積重量</strong>（箱の大きさ）で決まりやすい、という点です。<br>
       (3) <span class="lab proposal">案</span> 「外装 大」「内装 大」「重量物」「バイク部品 大」は数万円に達し、一部は送料表の範囲を超えます。タグで固定額にするより、出品前に個別見積りを取ったほうがよいと考えられます。<br>
       (4) <span class="lab proposal">案</span> 「小物」「ミラー」「機関」の小型側は、固定タグ額に収まりやすいグループです。<br>
-      (5) DHLの表は154kgまで、FedExの2表は68kgまでのデータです。「（範囲外）」は表の上限を超えることを示します。
+      (5) DHLの表は154kgまで、FedExの2表は68kgまでのデータです。「（範囲外）」は表の上限を超えることを示します。<br>
+      (6) <span class="lab infer">目安</span> 基本料金だけの表と比べて、おおむね1.4〜1.5倍になります。
     </p>
 
     <h3>3-5. タグが決めないこと</h3>
@@ -665,6 +667,7 @@ footer{color:var(--muted);font-size:13.5px;margin-top:36px;line-height:1.85;}
       <li>HANDOVER.md（2026-09-17／09-18／09-19節）— 印の意味・保留して質問する方式の決定記録</li>
       <li>eBay SpeedPAK 送料表 2026（DHL / FedEx IP / FedEx FICP、セラー保有のPDF）— 3-4の概算送料の出典</li>
       <li>eLogi 送料目安 2026-08 DHL（容積重量の除数5,000の出典）</li>
+      <li>一括シート（BulkToolsLib）のクーリエ送料計算式（燃油・500g毎追加・Cpass割引）</li>
     </ul>
 
     <h3>公式資料（日本郵便、対米国）</h3>
