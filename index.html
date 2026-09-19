@@ -115,6 +115,7 @@ footer{color:var(--muted);font-size:13.5px;margin-top:36px;line-height:1.85;}
   <h1>eBay Motors 部品ガイド</h1>
   <p class="lead">カテゴリ・タグ候補・重量とサイズの注意点</p>
   <p class="updated">更新日 2026-09-19</p>
+  <p class="updated">改訂: タグ案を部位グループ方式に変更、概算送料を追加</p>
   <div class="status">案の段階（タグは未確定、出品はまだ行っていない）</div>
 
   <section class="step" id="about">
@@ -491,59 +492,95 @@ footer{color:var(--muted);font-size:13.5px;margin-top:36px;line-height:1.85;}
     <h2>タグの候補（案）</h2>
     <div class="proposalbox">
       <span class="t">これは案です</span><br>
-      タグの名前・送料額・採否は出品者が決めます。このページは数値（送料額など）を一切決めていません。数値はTagShippingシート側で出品者が設定するものです。
+      タグの名前・送料額・採否は出品者が決めます。このページは金額を確定しません（3-4の送料は目安です）。数値はTagShippingシート側で出品者が設定するものです。
     </div>
-    <p><span class="lab fact">Fact</span> 一括シートのタグ1行は「送料額（固定額）・利益率・手数料率・関税モード・想定関税閾値・商品状態」などをまとめて呼び出す設定キーです。今のタグの送料額は<strong>固定額</strong>で、行ごとの実際の重量・サイズを見ません。ポリシーの自動選定も、新品/中古・配送区分(eco/xp)・想定関税・送料上限カテゴリだけで決まり、<strong>重量・サイズは見ません</strong>。フィギュア・カードは同じタグ内で重量・サイズの振れ幅が小さいためこの方式で足りますが、部品は同じ「部品」でも重さ・大きさの振れ幅が大きく、関税もカテゴリごとに違うため、部品に既存タグの「常識」をそのまま当てはめられません（詳細は5章の出典にある要因文書を参照）。</p>
-
-    <h3>候補の3つの軸（案）</h3>
-    <p><strong>軸A　送り方の区分</strong>（部品ごとに<strong>実測して</strong>決める。部品の種類だけでは決めない）</p>
-    <div class="tablebox">
-      <table>
-        <thead><tr><th>区分</th><th>目安となる範囲</th><th>ラベル</th></tr></thead>
-        <tbody>
-          <tr><td><strong>小型</strong></td><td>日本郵便の小形包装物／エコノミー系で送れる目安：2kg以内・長さ+幅+厚さ90cm以内・最長60cm以内</td><td><span class="lab fact">Fact</span>（小形包装物の上限） / <span class="lab unknown">Unknown</span>（CPaSS Economyの公式上限）</td></tr>
-          <tr><td><strong>中型</strong></td><td>小型の上限を超え、EMS／国際小包／クーリエで送る：30kg以内・長さ1.05〜1.5m以内</td><td><span class="lab fact">Fact</span>（日本郵便の上限）</td></tr>
-          <tr><td><strong>大型</strong></td><td>日本郵便の上限（30kg・1.5m等）を超える：クーリエのみ</td><td><span class="lab infer">目安</span>（クーリエの上限は<span class="lab unknown">Unknown</span>）</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p><strong>軸B　新品／中古</strong>（既存の軸をそのまま使う案）</p>
-    <p>再出品・仕入れ品は「中古」扱いというこれまでのルールに合わせます。「新品」タグは、出品者が実際に新品在庫を出品する場合のみ使う案です。</p>
-
-    <p><strong>軸C　車／バイク</strong></p>
-    <p><span class="lab fact">Fact</span> 通商拡大法232条の自動車部品関税リスト（日本製15%、2025-09-16〜）は自動車（Car & Truck）部品向けの記載です。<span class="lab unknown">Unknown</span> バイク部品がこのリストに載っているかどうかは確認できていません。載っているかどうかで想定関税の前提が変わるため、車とバイクを分ける案です。ATV・その他はバイクに揃える案（要検証）です。</p>
-
-    <h3>候補タグ名（案）</h3>
-    <p>軸A×B×Cを組み合わせた名前の案です。名前・送料額・採否は出品者が決めます。</p>
-    <p>
-      <span class="tagname">車部品 小型 中古</span><span class="tagname">車部品 中型 中古</span><span class="tagname">車部品 大型 中古</span>
-      <span class="tagname">バイク部品 小型 中古</span><span class="tagname">バイク部品 中型 中古</span><span class="tagname">バイク部品 大型 中古</span>
-    </p>
-    <p>新品を出品する場合の案（同じ組み合わせ）:</p>
-    <p>
-      <span class="tagname">車部品 小型 新品</span><span class="tagname">車部品 中型 新品</span><span class="tagname">車部品 大型 新品</span>
-      <span class="tagname">バイク部品 小型 新品</span><span class="tagname">バイク部品 中型 新品</span><span class="tagname">バイク部品 大型 新品</span>
-    </p>
     <div class="note">
-      <span class="t">タイヤにタグはありません</span><br>
-      タイヤは「外す」（保留して質問）対象のため、タグを作らずデータを書き込みません。「外す」印が付いたカテゴリの行は、すべてタグを持ちません（保留中の行にタグは書かない）。手数料がタイヤだけ9.5%（通常11.5%）という違いは、出品者がタイヤの出品を決めた場合にのみ関係します。
+      <span class="t">改訂（2026-09-19）</span><br>
+      以前のバージョンにあった「送り方の区分（小型／中型／大型）を行ごとに実測して決める」というタグ案は取り下げました。行ごとの重さ・寸法を手入力する仕組みは、今のv5タグ方式（AIが写真・説明文からタグを1つ付け、送料は固定額）とは合わず、出品者の運用に合わないためです。代わりに、AIが写真と説明文から確実に判定できる「部位のグループ」でタグを切る方式（3-1〜3-5）に置き換えました。
     </div>
 
-    <h3>部位別の送り方の区分（目安）</h3>
-    <p><span class="lab infer">目安</span> 部品の種類から見た、送り方の区分のだいたいの傾向です。実際は<strong>実測で決めます。</strong>同じ部品名でも車種・年式で大きさが変わります。</p>
+    <h3>3-1. 考え方（案）</h3>
+    <p><span class="lab proposal">案</span> タグは今までどおり、送料の固定額を持ちます。行ごとの重さ・寸法の手入力はしません。タグは翻訳時にAIが写真と説明文から付けるため、AIが確実に判定できる「部位のグループ」で切ります（種類ごとではないため、数は12個に収まります）。グループ内の大小の差は、今のフィギュア等と同じく、作業シート側で人が例外を直す前提です。新品／中古は必要であれば別行にします。危険物・規制品への対応は、タグではなく2章の印と「保留して質問する」仕組みが受け持ちます。「外装 小／大」のように境目で迷った場合は、大きい方のタグを付けます。送料額・利益率はセラーが決めます（このページには確定額を書きません）。</p>
+
+    <h3>3-2. タグ案（12）</h3>
+    <p><span class="lab proposal">案</span> タグ名と、そのタグに入る部位の例です。</p>
     <div class="tablebox">
       <table>
-        <thead><tr><th>送り方の区分</th><th>代表的な部品（例）</th></tr></thead>
+        <thead><tr><th>タグ</th><th>入る部位の例</th></tr></thead>
         <tbody>
-          <tr><td><strong>小型</strong></td><td>スイッチ・エンブレム・センサー・キー・ECU・メーター・シフトノブ</td></tr>
-          <tr><td><strong>中型</strong></td><td>ミラー本体・ライト類・キャリパー・ラジエーター・小さな外装</td></tr>
-          <tr><td><strong>大型</strong></td><td>バンパー・ボンネット・ドア・シート・ホイール4本</td></tr>
+          <tr><td><span class='tagname'>車部品 小物</span></td><td>スイッチ、リレー、センサー、エンブレム、キー・リモコン、ECU、メーター、シフトノブ、小さな内装トリム、ホイールキャップ</td></tr>
+          <tr><td><span class='tagname'>車部品 ライト</span></td><td>ヘッドライト、テールランプ、フォグ、ウインカー</td></tr>
+          <tr><td><span class='tagname'>車部品 ミラー</span></td><td>ドアミラー本体</td></tr>
+          <tr><td><span class='tagname'>車部品 外装 小</span></td><td>グリル、モール、エアロの小片、ドアハンドル</td></tr>
+          <tr><td><span class='tagname'>車部品 外装 大</span></td><td>バンパー、ボンネット、ドア、フェンダー、パネル</td></tr>
+          <tr><td><span class='tagname'>車部品 内装 大</span></td><td>シート、ダッシュボード、コンソール</td></tr>
+          <tr><td><span class='tagname'>車部品 機関</span></td><td>ラジエーター、コンデンサー、ポンプ、オルタネーター、キャリパー、ショック、マフラー</td></tr>
+          <tr><td><span class='tagname'>車部品 ホイール</span></td><td>ホイール単体、4本セット</td></tr>
+          <tr><td><span class='tagname'>車部品 重量物</span></td><td>エンジン、ミッション、デフ</td></tr>
+          <tr><td><span class='tagname'>バイク部品 小物</span></td><td>スイッチ、レバー、ミラー、キャブレター部品、小さな電装</td></tr>
+          <tr><td><span class='tagname'>バイク部品 中</span></td><td>キャブレター本体、マフラー、ホイール、ライト、シート</td></tr>
+          <tr><td><span class='tagname'>バイク部品 大</span></td><td>フレーム、エンジン、カウル一式、フォーク一式</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h3>タグが決めないもの</h3>
+    <h3>3-3. 梱包サイズ・梱包重量の目安</h3>
+    <div class="note">
+      <span class="t">この数値は実測に基づかない推定（目安）です。</span><br>
+      最初の数十件を実際に梱包して測り、置き換える前提のたたき台です。
+    </div>
+    <p class="muted small"><span class="lab fact">Fact</span> 日本郵便の上限＝小形包装物2kg・3辺90cm・最長60cm／EMS 30kg・長さ1.5m／国際小包30kg・長さ1.05m（4章(a)と同じ）。それ以外のサイズ・重量欄は<span class="lab infer">目安</span>です。</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>タグ</th><th>梱包サイズの目安（3辺 cm）</th><th>梱包重量の目安</th><th>日本郵便で送れるか</th><th>注意</th></tr></thead>
+        <tbody>
+          <tr><td><span class='tagname'>車部品 小物</span></td><td>20〜35 × 15〜25 × 5〜15</td><td>0.2〜2kg</td><td>小形包装物に収まるものが多い</td><td>ECU・メーターは精密品</td></tr>
+          <tr><td><span class='tagname'>車部品 ライト</span></td><td>50〜80 × 30〜50 × 30〜40</td><td>2〜6kg</td><td>EMS・国際小包の範囲内</td><td>割れ物。箱が大きく容積重量が効く</td></tr>
+          <tr><td><span class='tagname'>車部品 ミラー</span></td><td>35〜50 × 25〜35 × 20〜30</td><td>1.5〜4kg</td><td>同上</td><td>ガラス割れ物</td></tr>
+          <tr><td><span class='tagname'>車部品 外装 小</span></td><td>50〜120 × 20〜40 × 10〜25</td><td>1〜5kg</td><td>長さ1.05〜1.5mに注意</td><td>モールは長物</td></tr>
+          <tr><td><span class='tagname'>車部品 外装 大</span></td><td>120〜200 × 60〜100 × 30〜60</td><td>8〜25kg</td><td>長さ1.5m超は日本郵便不可。クーリエ前提</td><td>梱包費・大型料金</td></tr>
+          <tr><td><span class='tagname'>車部品 内装 大</span></td><td>80〜130 × 50〜70 × 40〜70</td><td>10〜25kg</td><td>超えるものと収まるものが混在</td><td>シートはエアバッグ内蔵に注意</td></tr>
+          <tr><td><span class='tagname'>車部品 機関</span></td><td>30〜80 × 20〜50 × 15〜40</td><td>2〜15kg</td><td>多くは範囲内</td><td>液体は抜く。フィン潰れ</td></tr>
+          <tr><td><span class='tagname'>車部品 ホイール</span></td><td>1本 55〜70 × 55〜70 × 20〜30</td><td>1本 8〜15kg、4本で30kg超</td><td>1本はEMS内。4本は日本郵便不可</td><td>重量物</td></tr>
+          <tr><td><span class='tagname'>車部品 重量物</span></td><td>60〜120 × 50〜80 × 50〜80</td><td>40〜200kg</td><td>日本郵便不可（30kg超）。クーリエ/貨物、上限Unknown</td><td>液体を完全に抜く</td></tr>
+          <tr><td><span class='tagname'>バイク部品 小物</span></td><td>15〜30 × 10〜20 × 5〜15</td><td>0.1〜1.5kg</td><td>小形包装物に収まるものが多い</td><td>―</td></tr>
+          <tr><td><span class='tagname'>バイク部品 中</span></td><td>40〜80 × 25〜50 × 20〜40</td><td>2〜10kg</td><td>範囲内</td><td>マフラーは長物、ライトは割れ物</td></tr>
+          <tr><td><span class='tagname'>バイク部品 大</span></td><td>100〜180 × 40〜80 × 30〜60</td><td>10〜40kg</td><td>混在</td><td>液体を抜く</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>3-4. 概算のクーリエ送料（米国向け）</h3>
+    <p><span class="lab fact">Fact</span> セラー保有の2026年eBay SpeedPAK送料表（DHL Zone 10、FedEx IP、FedEx FICP）による金額です。FedEx FICPの下限＝米国西部(E)・上限＝米国東部/カナダ(F)のゾーン料金です。請求重量＝max(実重量, 容積重量)、容積重量＝縦×横×高さ(cm)÷5,000。除数5,000は、セラー保有のeLogi DHL送料目安表（2026-08）に印刷されている数値です（<span class="lab fact">Fact</span>）。SpeedPAKの3表そのものに同じ除数が印刷されているわけではなく、同じ計算方法を使っていると仮定しています（<span class="lab infer">目安</span>）。燃油サーチャージ・リモートエリア/住宅地サーチャージ・税の扱いは、表に記載がなく<span class="lab unknown">Unknown</span>です。</p>
+    <p>下の金額は、3-3の梱包サイズ・重量の目安レンジから計算した請求重量の範囲を、そのまま送料表に当てはめた概算です。</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>タグ</th><th>請求重量の目安</th><th>DHL SpeedPAK（円）</th><th>FedEx FICP（円、下限=西部E・上限=東部F）</th><th>FedEx IP（円）</th></tr></thead>
+        <tbody>
+          <tr><td><span class='tagname'>車部品 小物</span></td><td>0.5〜3kg</td><td class='num'>2,454〜3,761</td><td class='num'>2,082〜3,540</td><td class='num'>2,331〜3,755</td></tr>
+          <tr><td><span class='tagname'>車部品 ライト</span></td><td>9〜32kg</td><td class='num'>8,958〜32,096</td><td class='num'>7,131〜31,983</td><td class='num'>7,409〜33,652</td></tr>
+          <tr><td><span class='tagname'>車部品 ミラー</span></td><td>3.5〜10.5kg</td><td class='num'>4,203〜10,469</td><td class='num'>3,549〜9,346</td><td class='num'>3,717〜9,967</td></tr>
+          <tr><td><span class='tagname'>車部品 外装 小</span></td><td>2〜24kg</td><td class='num'>3,045〜24,059</td><td class='num'>3,061〜23,721</td><td class='num'>2,829〜25,240</td></tr>
+          <tr><td><span class='tagname'>車部品 外装 大</span></td><td>43〜240kg</td><td class='num'>44,133〜(範囲外)</td><td class='num'>42,110〜(範囲外)</td><td class='num'>42,753〜(範囲外)</td></tr>
+          <tr><td><span class='tagname'>車部品 内装 大</span></td><td>32〜128kg</td><td class='num'>32,096〜128,391</td><td class='num'>29,684〜(範囲外)</td><td class='num'>31,085〜(範囲外)</td></tr>
+          <tr><td><span class='tagname'>車部品 機関</span></td><td>2〜32kg</td><td class='num'>3,045〜32,096</td><td class='num'>3,061〜31,983</td><td class='num'>2,829〜33,652</td></tr>
+          <tr><td><span class='tagname'>車部品 ホイール(1本)</span></td><td>12.5〜29.5kg</td><td class='num'>12,481〜30,089</td><td class='num'>11,323〜29,916</td><td class='num'>12,225〜31,550</td></tr>
+          <tr><td><span class='tagname'>車部品 重量物</span></td><td>40〜200kg</td><td class='num'>40,120〜(範囲外)</td><td class='num'>38,281〜(範囲外)</td><td class='num'>38,866〜(範囲外)</td></tr>
+          <tr><td><span class='tagname'>バイク部品 小物</span></td><td>0.5〜2kg</td><td class='num'>2,454〜3,045</td><td class='num'>2,082〜3,108</td><td class='num'>2,331〜2,859</td></tr>
+          <tr><td><span class='tagname'>バイク部品 中</span></td><td>4〜32kg</td><td class='num'>4,568〜32,096</td><td class='num'>3,973〜31,983</td><td class='num'>4,204〜33,652</td></tr>
+          <tr><td><span class='tagname'>バイク部品 大</span></td><td>24〜173kg</td><td class='num'>24,059〜(範囲外)</td><td class='num'>21,966〜(範囲外)</td><td class='num'>23,314〜(範囲外)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted small">
+      (1) レンジが広いのは、3-3のサイズ推定のレンジが広いためです。実測すればレンジは狭くなります。<br>
+      (2) 重要な点: ライト・ミラー・外装のような部品は、請求重量が実重量ではなく<strong>容積重量</strong>（箱の大きさ）で決まりやすい、という点です。<br>
+      (3) <span class="lab proposal">案</span> 「外装 大」「内装 大」「重量物」「バイク部品 大」は数万円に達し、一部は送料表の範囲を超えます。タグで固定額にするより、出品前に個別見積りを取ったほうがよいと考えられます。<br>
+      (4) <span class="lab proposal">案</span> 「小物」「ミラー」「機関」の小型側は、固定タグ額に収まりやすいグループです。<br>
+      (5) DHLの表は154kgまで、FedExの2表は68kgまでのデータです。「（範囲外）」は表の上限を超えることを示します。
+    </p>
+
+    <h3>3-5. タグが決めないこと</h3>
     <ul>
       <li><strong>出品してよいかどうか</strong>（2章の印・保留して質問する仕組みで決まる。タグとは別の軸）</li>
       <li><strong>categoryId</strong>（2章のカテゴリ参照データで決まる。タグとは別の軸）</li>
@@ -626,6 +663,8 @@ footer{color:var(--muted);font-size:13.5px;margin-top:36px;line-height:1.85;}
       <li>jp_listing_survey_2026-09-17.csv — 日本発の現在出品中の件数・価格サンプル（読み取り専用API調査）</li>
       <li>parts-shipping-profit-factors.md — 送料・利益・関税・出品制約の要因整理（レビュー済み）</li>
       <li>HANDOVER.md（2026-09-17／09-18／09-19節）— 印の意味・保留して質問する方式の決定記録</li>
+      <li>eBay SpeedPAK 送料表 2026（DHL / FedEx IP / FedEx FICP、セラー保有のPDF）— 3-4の概算送料の出典</li>
+      <li>eLogi 送料目安 2026-08 DHL（容積重量の除数5,000の出典）</li>
     </ul>
 
     <h3>公式資料（日本郵便、対米国）</h3>
