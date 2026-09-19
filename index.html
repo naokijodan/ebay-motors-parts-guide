@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eBay Motors 部品ガイド — カテゴリ・タグ候補・重量とサイズの注意点</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap">
+<style>
+:root{
+  --ground:#F6F7F5; --surface:#FFFFFF; --ink:#2E3A40; --muted:#5C6B72; --line:#DDE3E1;
+  --blue:#3A5A78; --blue-soft:#EDF2F7;
+  --red:#9C4A42; --red-soft:#F8EFED;
+  --amber:#8A6A2F; --amber-soft:#F7F1E2;
+  --green:#3F6B52; --green-soft:#EBF3EE;
+  --gray:#5C6B72; --gray-soft:#EEF0EF;
+}
+*{box-sizing:border-box;}
+body{
+  background:var(--ground); color:var(--ink);
+  font-family:"Noto Sans JP",-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:17px; line-height:1.9; margin:0;
+}
+.wrap{max-width:900px;margin:0 auto;padding:40px 18px 90px;}
+h1,h2,h3{font-family:"Zen Maru Gothic","Noto Sans JP",sans-serif;line-height:1.5;text-wrap:balance;}
+h1{font-size:30px;margin:8px 0 6px;}
+h2{font-size:22px;margin:6px 0 12px;padding-top:4px;}
+h3{font-size:18px;margin:20px 0 8px;}
+p{margin:10px 0;}
+ul{margin:8px 0;padding-left:22px;}
+li{margin:6px 0;}
+strong{font-weight:700;}
+.eyebrow{color:var(--blue);font-weight:700;letter-spacing:.12em;font-size:13px;}
+.lead{color:var(--muted);font-size:16px;margin:0 0 6px;}
+.updated{color:var(--muted);font-size:14px;margin:2px 0 4px;}
+.status{
+  display:inline-block;background:var(--amber-soft);color:var(--amber);border:1px solid #E3D5B3;
+  border-radius:8px;padding:6px 14px;font-size:14.5px;font-weight:700;margin:8px 0 4px;
+}
+
+/* labels */
+.lab{display:inline-block;font-size:12px;font-weight:700;border-radius:6px;padding:1px 9px;margin-right:5px;letter-spacing:.02em;white-space:nowrap;}
+.lab.fact{background:var(--green-soft);color:var(--green);border:1px solid #C9DCCF;}
+.lab.proposal{background:var(--blue-soft);color:var(--blue);border:1px solid #C7D4E0;}
+.lab.infer{background:var(--amber-soft);color:var(--amber);border:1px solid #E3D5B3;}
+.lab.unknown{background:var(--gray-soft);color:var(--gray);border:1px solid #D6DAD9;}
+
+/* mark chips */
+.mk{display:inline-block;font-size:12.5px;font-weight:700;border-radius:6px;padding:1px 9px;white-space:nowrap;}
+.mk-ex{background:var(--red-soft);color:var(--red);border:1px solid #E6C9C4;}
+.mk-ca{background:var(--amber-soft);color:var(--amber);border:1px solid #E3D5B3;}
+.mk-no{background:var(--gray-soft);color:var(--gray);border:1px solid #D6DAD9;}
+
+/* sticky toc */
+.toc{
+  position:sticky; top:env(safe-area-inset-top,0px);
+  background:rgba(246,247,245,.96); backdrop-filter:blur(4px);
+  border-bottom:1px solid var(--line); z-index:10; margin:0 -18px 20px; padding:10px 18px;
+}
+.toc-inner{max-width:900px;margin:0 auto;display:flex;gap:14px;flex-wrap:wrap;font-size:14px;}
+.toc a{color:var(--blue);text-decoration:none;font-weight:700;}
+.toc a:hover{text-decoration:underline;}
+
+.step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 26px 22px;margin-top:26px;}
+.step-no{display:inline-block;background:var(--blue);color:#fff;font-family:"Zen Maru Gothic",sans-serif;font-weight:700;font-size:13px;border-radius:999px;padding:3px 15px;letter-spacing:.06em;margin-bottom:6px;}
+
+.tablebox{overflow-x:auto;margin:14px 0;border-radius:10px;}
+table{border-collapse:collapse;width:100%;min-width:460px;font-size:15px;background:var(--surface);}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top;line-height:1.65;}
+th{background:#EFF2F0;font-weight:700;white-space:nowrap;position:sticky;top:0;}
+td.num, th.num{text-align:right;white-space:nowrap;}
+.num{text-align:right;white-space:nowrap;}
+tbody tr:nth-child(even){background:#FBFCFB;}
+
+.note{background:var(--amber-soft);border:1px solid #E3D5B3;border-radius:10px;padding:14px 18px;margin:16px 0;font-size:15.5px;}
+.note .t{font-weight:700;color:var(--amber);}
+.ok{background:var(--green-soft);border:1px solid #C9DCCF;border-radius:10px;padding:14px 18px;margin:16px 0;font-size:15.5px;}
+.ok .t{font-weight:700;color:var(--green);}
+.proposalbox{background:var(--blue-soft);border:1px solid #C7D4E0;border-radius:10px;padding:14px 18px;margin:16px 0;font-size:15.5px;}
+.proposalbox .t{font-weight:700;color:var(--blue);}
+
+.search-wrap{margin:12px 0;}
+.search-wrap input{
+  width:100%;padding:10px 14px;font-size:15px;border:1px solid var(--line);border-radius:8px;
+  background:var(--surface);color:var(--ink);font-family:inherit;
+}
+.search-wrap input:focus{outline:2px solid var(--blue);}
+.hit-count{font-size:13px;color:var(--muted);margin:4px 0;}
+
+.tagname{display:inline-block;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:2px 10px;font-family:monospace;font-size:14.5px;margin:2px 3px 2px 0;}
+
+footer{color:var(--muted);font-size:13.5px;margin-top:36px;line-height:1.85;}
+.small{font-size:12.5px;}
+.muted{color:var(--muted);}
+
+@media(max-width:640px){
+  .wrap{padding:28px 14px 70px;}
+  h1{font-size:24px;}
+  .step{padding:18px 16px 16px;}
+}
+[hidden]{display:none!important;}
+</style>
+</head>
+<body>
+<div class="toc">
+  <div class="toc-inner">
+    <a href="#about">このページについて</a>
+    <a href="#category">カテゴリ</a>
+    <a href="#tags">タグの候補（案）</a>
+    <a href="#caution">重量・サイズの注意点</a>
+    <a href="#sources">出典</a>
+  </div>
+</div>
+<div class="wrap">
+  <div class="eyebrow">eBay輸出 やさしい解説シリーズ</div>
+  <h1>eBay Motors 部品ガイド</h1>
+  <p class="lead">カテゴリ・タグ候補・重量とサイズの注意点</p>
+  <p class="updated">更新日 2026-09-19</p>
+  <div class="status">案の段階（タグは未確定、出品はまだ行っていない）</div>
+
+  <section class="step" id="about">
+    <span class="step-no">1</span>
+    <h2>このページについて</h2>
+    <p>これは、中古の車・バイク部品（日本→アメリカ）を一括シートで出品するための、下ごしらえの資料です。「どのeBay Motorsカテゴリがあるか」「どのカテゴリに出品可否の印がついているか」「一括シートのタグ案」「重さ・サイズ・発送・関税の注意点」をまとめています。</p>
+    <p><strong>ラベルの見方（必ずこの4種類のどれかが付いています）</strong></p>
+    <ul>
+      <li><span class="lab fact">Fact</span> 公式資料・実データで確認できた事実</li>
+      <li><span class="lab proposal">案</span> 提案。採否・名前・数値は出品者が決める</li>
+      <li><span class="lab infer">目安</span> Factから合理的に推測した内容。実測・実データで変わる可能性あり</li>
+      <li><span class="lab unknown">Unknown</span> 確認できなかった内容</li>
+    </ul>
+    <div class="note">
+      <span class="t">出品するかどうかは、常に出品者が決めます。</span><br>
+      このページのタグ候補・カテゴリの印は、判断のための材料です。AIやこのページが「出品してよい」「出品してはいけない」と決めることはありません。
+    </div>
+  </section>
+
+  <section class="step" id="category">
+    <span class="step-no">2</span>
+    <h2>カテゴリ</h2>
+    <p><span class="lab fact">Fact</span> eBay Motors（カテゴリ木100、バージョン83）の部品カテゴリは、車体本体（Cars & Trucks本体など）を除いて<strong>19区分・葉カテゴリ1,891件</strong>です。このうち<strong>241件（外す91／注意150）</strong>に、出品前に確認が必要という印が付いています。</p>
+
+    <h3>(a) 区分一覧（19区分）</h3>
+    <p class="muted small"><span class="lab fact">Fact</span> 葉カテゴリ数は参照データより。日本発の出品数は下の市場調査（2026-09-17）より。件数は「現在出品中の件数」であり、売れた数ではありません。</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>区分</th><th class="num">葉カテゴリ数</th><th class="num">日本発の出品数</th><th class="num">割合</th></tr></thead>
+        <tbody>
+<tr><td>Car &amp; Truck Parts &amp; Accessories</td><td class='num'>414</td><td class='num'>1,933,256</td><td class='num'>75.2%</td></tr>
+<tr><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories</td><td class='num'>302</td><td class='num'>28,786</td><td class='num'>1.1%</td></tr>
+<tr><td>Motorcycle &amp; Scooter Parts &amp; Accessories</td><td class='num'>289</td><td class='num'>245,022</td><td class='num'>9.5%</td></tr>
+<tr><td>Commercial Truck Parts</td><td class='num'>218</td><td class='num'>1,436</td><td class='num'>0.1%</td></tr>
+<tr><td>Performance &amp; Racing Parts</td><td class='num'>144</td><td class='num'>4,923</td><td class='num'>0.2%</td></tr>
+<tr><td>Automotive Tools &amp; Supplies</td><td class='num'>128</td><td class='num'>8,137</td><td class='num'>0.3%</td></tr>
+<tr><td>Boat Parts</td><td class='num'>82</td><td class='num'>8,746</td><td class='num'>0.3%</td></tr>
+<tr><td>RV, Trailer &amp; Camper Parts &amp; Accessories</td><td class='num'>81</td><td class='num'>189</td><td class='num'>0.0%</td></tr>
+<tr><td>In-Car Technology, GPS &amp; Security</td><td class='num'>69</td><td class='num'>26,714</td><td class='num'>1.0%</td></tr>
+<tr><td>Apparel, Protective Gear &amp; Merchandise</td><td class='num'>53</td><td class='num'>7,995</td><td class='num'>0.3%</td></tr>
+<tr><td>Motorcycle Maintenance, Stands &amp; Towing</td><td class='num'>29</td><td class='num'>2,977</td><td class='num'>0.1%</td></tr>
+<tr><td>Snowmobile Parts</td><td class='num'>21</td><td class='num'>1,126</td><td class='num'>0.0%</td></tr>
+<tr><td>Aviation Parts &amp; Accessories</td><td class='num'>18</td><td class='num'>69</td><td class='num'>0.0%</td></tr>
+<tr><td>Manuals &amp; Literature</td><td class='num'>13</td><td class='num'>17,765</td><td class='num'>0.7%</td></tr>
+<tr><td>Personal Watercraft Parts</td><td class='num'>10</td><td class='num'>2,921</td><td class='num'>0.1%</td></tr>
+<tr><td>Safety &amp; Security Accessories</td><td class='num'>10</td><td class='num'>787</td><td class='num'>0.0%</td></tr>
+<tr><td>Golf Cart Parts &amp; Accessories</td><td class='num'>6</td><td class='num'>232</td><td class='num'>0.0%</td></tr>
+<tr><td>Other Vehicle Parts</td><td class='num'>3</td><td class='num'>1,521</td><td class='num'>0.1%</td></tr>
+<tr><td>Other</td><td class='num'>1</td><td class='num'>278,077</td><td class='num'>10.8%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>(b) 日本発の出品が多いカテゴリ TOP20</h3>
+    <p><span class="lab fact">Fact</span> 2026-09-17の市場調査（読み取り専用のBrowse API、マーケットプレイスEBAY_MOTORS_US、出品場所＝日本、1カテゴリ1回呼び出し）による、<strong>現在出品中の件数</strong>（販売実績ではありません）。価格の目安はベストマッチ上位100件からのサンプルの中央値（USD）です。</p>
+    <div class="note"><span class="t">注意</span> 件数・価格はAPIの推定値です。同じカテゴリでも時期・検索条件で変わります。件数が多い＝儲かるという意味ではありません。</div>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th class="num">順位</th><th class="num">categoryId</th><th>カテゴリ名</th><th class="num">日本発出品数</th><th class="num">価格の目安（中央値）</th><th>印</th></tr></thead>
+        <tbody>
+<tr><td class='num'>1</td><td class='num'>6755</td><td>Other</td><td class='num'>278,077</td><td class='num'>$117.56</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>2</td><td class='num'>9886</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Other Car &amp; Truck Parts &amp; Accessories</td><td class='num'>233,986</td><td class='num'>$112.55</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>3</td><td class='num'>33654</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exterior Parts &amp; Accessories &gt; Body Moldings &amp; Trims</td><td class='num'>169,430</td><td class='num'>$170.00</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>4</td><td class='num'>33716</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Tail Light Assemblies</td><td class='num'>94,922</td><td class='num'>$197.05</td><td><span class='mk mk-ca'>注意</span></td></tr>
+<tr><td class='num'>5</td><td class='num'>262161</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exterior Parts &amp; Accessories &gt; Side View Mirrors &gt; Mirror Assemblies</td><td class='num'>86,251</td><td class='num'>$100.70</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>6</td><td class='num'>33710</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Headlight Assemblies</td><td class='num'>71,113</td><td class='num'>$212.78</td><td><span class='mk mk-ca'>注意</span></td></tr>
+<tr><td class='num'>7</td><td class='num'>33706</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Interior Parts &amp; Accessories &gt; Window Motors &amp; Regulators</td><td class='num'>55,415</td><td class='num'>$130.72</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>8</td><td class='num'>33602</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Engine Cooling Components &gt; Radiators</td><td class='num'>54,358</td><td class='num'>$90.00</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>9</td><td class='num'>262166</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exterior Parts &amp; Accessories &gt; Panels &gt; Body Side &amp; Quarter Panels</td><td class='num'>47,338</td><td class='num'>$660.35</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>10</td><td class='num'>179753</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Other Motorcycle &amp; Scooter Parts &amp; Accessories</td><td class='num'>40,467</td><td class='num'>$100.00</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>11</td><td class='num'>50459</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Interior Parts &amp; Accessories &gt; Switches &amp; Controls</td><td class='num'>38,531</td><td class='num'>$88.28</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>12</td><td class='num'>33578</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Starters, Alternators, ECUs &amp; Wiring &gt; Other Starters, Alternators, ECUs &amp; Wiring</td><td class='num'>36,834</td><td class='num'>$51.44</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>13</td><td class='num'>33580</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Steering &amp; Suspension &gt; Control Arms, Ball Joints &amp; Assemblies</td><td class='num'>32,226</td><td class='num'>$154.54</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>14</td><td class='num'>33590</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Steering &amp; Suspension &gt; Shocks, Struts &amp; Assemblies</td><td class='num'>31,071</td><td class='num'>$241.81</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>15</td><td class='num'>33563</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Brakes &amp; Brake Parts &gt; Calipers &amp; Brackets</td><td class='num'>28,039</td><td class='num'>$167.00</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>16</td><td class='num'>61864</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Air Conditioning &amp; Heating &gt; A/C Condensers</td><td class='num'>27,990</td><td class='num'>$345.02</td><td><span class='mk mk-ca'>注意</span></td></tr>
+<tr><td class='num'>17</td><td class='num'>14769</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exterior Parts &amp; Accessories &gt; Other Exterior Parts &amp; Accessories</td><td class='num'>25,293</td><td class='num'>$143.56</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>18</td><td class='num'>174090</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Steering &amp; Suspension &gt; Suspension Component Replacement Kits</td><td class='num'>25,291</td><td class='num'>$276.31</td><td><span class='mk mk-no'>無印</span></td></tr>
+<tr><td class='num'>19</td><td class='num'>33596</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Starters, Alternators, ECUs &amp; Wiring &gt; ECUs &amp; Computer Modules</td><td class='num'>25,116</td><td class='num'>$239.00</td><td><span class='mk mk-ca'>注意</span></td></tr>
+<tr><td class='num'>20</td><td class='num'>33643</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exterior Parts &amp; Accessories &gt; Emblems &amp; Ornaments</td><td class='num'>24,773</td><td class='num'>$79.99</td><td><span class='mk mk-no'>無印</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>(c) 印の一覧</h3>
+    <p><span class="lab fact">Fact</span> 印の意味（利用者決定）: <strong>外す</strong>＝AIはその行を保留し、書き込みをせず、後で出品者に「出品予定ですか？取り下げますか？」と1件ずつ確認します。AIが出品可否を決めることはありません。<strong>注意</strong>＝AIは書き込みの前に、下の「確認すること」を先に確認します。</p>
+    <p class="muted small">グループ別の内訳（除外91・要注意150、計241件）。理由は英語の元データ（category_marks.csv）を日本語にしたものです。</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>グループ</th><th>印（内訳）</th><th class="num">対象カテゴリ数</th><th>理由</th><th>確認すること（注意のみ）</th></tr></thead>
+        <tbody>
+<tr><td>ヘルメット<div class='muted small'>helmet</div></td><td><span class='mk mk-ex'>外す</span> 2</td><td class='num'>2</td><td>利用者の判断で今回は出品対象外（FMVSS 218。日本国内向けヘルメットは米国のDOT認証を持たないものが多い）。</td><td>―（対象外方針。ただし仕組み上は保留して質問される）</td></tr>
+<tr><td>エアバッグ関連<div class='muted small'>airbag</div></td><td><span class='mk mk-ex'>外す</span> 2　<span class='mk mk-ca'>注意</span> 1</td><td class='num'>3</td><td>eBayポリシーでエアバッグ・エアバッグカバーは全面禁止（2026-09-24〜）。危険物クラス9。SRSバイパス装置・シミュレーターも出品不可。</td><td>診断ツール（エアバッグを模擬しないもの）のみ出品可。実物のエアバッグ・エアバッグカバーでないか確認。</td></tr>
+<tr><td>触媒コンバーター／DPF<div class='muted small'>catalytic</div></td><td><span class='mk mk-ex'>外す</span> 4</td><td class='num'>4</td><td>eBayポリシーで中古触媒コンバーターは、再認証済みまたはスクラップ扱い（車種情報なし）のみ許可（大気浄化法）。</td><td>―</td></tr>
+<tr><td>シートベルト・レーシングハーネス<div class='muted small'>seatbelt</div></td><td><span class='mk mk-ex'>外す</span> 3　<span class='mk mk-ca'>注意</span> 1</td><td class='num'>4</td><td>FMVSS 209（安全に関わる中古部品）。レーシング用ヘッド・ネック拘束具（HANSデバイス等）も同グループ。</td><td>認証（SFI／FIA等）を主張してよいのは、商品自体にその表示がある場合のみ。</td></tr>
+<tr><td>ブレーキホース／ライン<div class='muted small'>brakehose</div></td><td><span class='mk mk-ex'>外す</span> 5</td><td class='num'>5</td><td>FMVSS 106（安全に関わる中古部品）。</td><td>―</td></tr>
+<tr><td>ガラス・フロントガラス<div class='muted small'>glass</div></td><td><span class='mk mk-ex'>外す</span> 4　<span class='mk mk-ca'>注意</span> 3</td><td class='num'>7</td><td>FMVSS 205（DOTマーク必須のガラス）。割れ物。</td><td>DOT・路上使用可という表示は、商品にその表示がない限り書かない。素材・状態を確認。</td></tr>
+<tr><td>タイヤ（ホイール＋タイヤ含む）<div class='muted small'>tire</div></td><td><span class='mk mk-ex'>外す</span> 14　<span class='mk mk-ca'>注意</span> 3</td><td class='num'>17</td><td>FMVSS 109/119/139・49 CFR 574.5（DOTマーク必須）。</td><td>ホイールとタイヤが混在するカテゴリは、商品がタイヤを含むかどうかを確認。含む場合は保留。</td></tr>
+<tr><td>油脂・薬品・塗料<div class='muted small'>chemical</div></td><td><span class='mk mk-ex'>外す</span> 42　<span class='mk mk-ca'>注意</span> 2</td><td class='num'>44</td><td>液体・薬品・塗料・接着剤・溶剤は危険物で、国際発送できない。</td><td>商品が液体・エアゾール・化学品そのものでないか確認。</td></tr>
+<tr><td>バッテリー<div class='muted small'>battery</div></td><td><span class='mk mk-ex'>外す</span> 12　<span class='mk mk-ca'>注意</span> 1</td><td class='num'>13</td><td>バッテリーは危険物ポリシー対象で、国際発送できない。燃料電池カテゴリは実物の燃料電池スタック・セル・ガス容器・バッテリーが対象。</td><td>燃料電池カテゴリでは、構造部品（燃料電池そのものを含まない）のみ出品可かどうかを確認。</td></tr>
+<tr><td>消火器・ガスボンベ<div class='muted small'>pressurised</div></td><td><span class='mk mk-ex'>外す</span> 2　<span class='mk mk-ca'>注意</span> 1</td><td class='num'>3</td><td>消火器・フレア・加圧容器／火工品は危険物。</td><td>混在する安全装備カテゴリでは、加圧・火工品を含まない商品かどうかを確認。</td></tr>
+<tr><td>灯火類<div class='muted small'>lighting</div></td><td><span class='mk mk-ca'>注意</span> 60</td><td class='num'>60</td><td>FMVSS 108（灯火・反射材）。</td><td>DOT・SAE認証や路上使用可という表示は、商品にその表示がない限り書かない。HIDコンバージョンキットは出品不可。</td></tr>
+<tr><td>ステアリングホイール<div class='muted small'>steering</div></td><td><span class='mk mk-ca'>注意</span> 3</td><td class='num'>3</td><td>ステアリングホイールにエアバッグが内蔵されている場合がある。</td><td>エアバッグまたはエアバッグカバーが付いていないか、画像・説明文で確認。付いている場合は保留。</td></tr>
+<tr><td>排気・排出系部品（触媒以外）<div class='muted small'>exhaust</div></td><td><span class='mk mk-ca'>注意</span> 34</td><td class='num'>34</td><td>排気・排出系部品は、触媒コンバーターを内蔵している場合や排出対策を無効化・バイパスする部品の場合がある。</td><td>触媒コンバーターを内蔵していないか、排出対策を無効化・バイパスする部品でないか確認。「レース専用／オフロード専用」という表記は書かない。</td></tr>
+<tr><td>チューナー（Chips, Programmers）<div class='muted small'>tuner</div></td><td><span class='mk mk-ex'>外す</span> 1</td><td class='num'>1</td><td>eBayの排出対策無効化装置ポリシーで、パフォーマンスチップ・チューナー・プログラマーは出品不可。</td><td>―</td></tr>
+<tr><td>純正ECU<div class='muted small'>ecu</div></td><td><span class='mk mk-ca'>注意</span> 3</td><td class='num'>3</td><td>純正ECUのみ出品可。</td><td>チューン済み・書き換え済み・ピギーバック・社外の単体ECUでないか確認。</td></tr>
+<tr><td>メーターパネル・スピードメーター<div class='muted small'>odometer</div></td><td><span class='mk mk-ca'>注意</span> 4</td><td class='num'>4</td><td>走行距離計法（49 USC 32703）。</td><td>表示されている距離をそのまま記載し、実際の走行距離を保証しない。距離補正装置は出品不可。</td></tr>
+<tr><td>キー・キーレス・イモビライザー<div class='muted small'>key</div></td><td><span class='mk mk-ca'>注意</span> 7</td><td class='num'>7</td><td>eBayのピッキング用具ポリシー。</td><td>鍵複製・解読・プログラミング装置でないか確認。キー・リモコンは単なる部品としてのみ出品可。</td></tr>
+<tr><td>燃料タンク<div class='muted small'>fueltank</div></td><td><span class='mk mk-ca'>注意</span> 5</td><td class='num'>5</td><td>燃料タンク・セルは、燃料が残っていると危険物になる。</td><td>空でガソリン残留がないことを確認。</td></tr>
+<tr><td>エアコン部品（冷媒保持）<div class='muted small'>ac</div></td><td><span class='mk mk-ca'>注意</span> 9</td><td class='num'>9</td><td>EPA規則609。冷媒が入っていると出品できない。</td><td>冷媒が入っていないことを確認。入っている場合は保留。</td></tr>
+<tr><td>ナンバープレート関連品<div class='muted small'>plate</div></td><td><span class='mk mk-ca'>注意</span> 3</td><td class='num'>3</td><td>ナンバープレートの現物は登録関連の確認が必要。</td><td>フレーム・ホルダーは出品可。実際の登録プレート現物は別途確認が必要。</td></tr>
+<tr><td>摩擦材（ブレーキパッド／シュー・クラッチ板）<div class='muted small'>friction</div></td><td><span class='mk mk-ca'>注意</span> 10</td><td class='num'>10</td><td>ビンテージ・新古品・年式不明の摩擦材はアスベストを含む可能性がある（米国EPAの2024年禁止）。</td><td>現行生産品であることを確認。ビンテージ・新古品・年式不明のものは保留。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>印が付いた全カテゴリ（241件、検索できます）</h3>
+    <div class="search-wrap">
+      <input type="text" id="markSearch" placeholder="カテゴリID・カテゴリ名・グループ名で検索（例: tire, 33716, ヘッドライト）" oninput="filterMarkedTable()">
+      <div class="hit-count" id="hitCount"></div>
+    </div>
+    <div class="tablebox">
+      <table id="markedTable">
+        <thead><tr><th class="num">categoryId</th><th>カテゴリ名</th><th>印</th><th>グループ</th></tr></thead>
+        <tbody>
+<tr data-search="33543 car &amp; truck parts &amp; accessories &gt; air conditioning &amp; heating &gt; a/c compressors &amp; clutches エアコン部品（冷媒保持） ac"><td class='num'>33543</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Air Conditioning &amp; Heating &gt; A/C Compressors &amp; Clutches</td><td><span class='mk mk-ca'>注意</span></td><td>エアコン部品（冷媒保持）</td></tr>
+<tr data-search="33544 car &amp; truck parts &amp; accessories &gt; air conditioning &amp; heating &gt; a/c hoses &amp; fittings エアコン部品（冷媒保持） ac"><td class='num'>33544</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Air Conditioning &amp; Heating &gt; A/C Hoses &amp; Fittings</td><td><span class='mk mk-ca'>注意</span></td><td>エアコン部品（冷媒保持）</td></tr>
+<tr data-search="33547 car &amp; truck parts &amp; accessories &gt; air conditioning &amp; heating &gt; a/c evaporators エアコン部品（冷媒保持） ac"><td class='num'>33547</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Air Conditioning &amp; Heating &gt; A/C Evaporators</td><td><span class='mk mk-ca'>注意</span></td><td>エアコン部品（冷媒保持）</td></tr>
+<tr data-search="61864 car &amp; truck parts &amp; accessories &gt; air conditioning &amp; heating &gt; a/c condensers エアコン部品（冷媒保持） ac"><td class='num'>61864</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Air Conditioning &amp; Heating &gt; A/C Condensers</td><td><span class='mk mk-ca'>注意</span></td><td>エアコン部品（冷媒保持）</td></tr>
+<tr data-search="184827 commercial truck parts &gt; air conditioning &amp; heating &gt; a/c compressors &amp; clutches エアコン部品（冷媒保持） ac"><td class='num'>184827</td><td>Commercial Truck Parts &gt; Air Conditioning &amp; Heating &gt; A/C Compressors &amp; Clutches</td><td><span class='mk mk-ca'>注意</span></td><td>エアコン部品（冷媒保持）</td></tr>
+<tr data-search="184828 commercial truck parts &gt; air conditioning &amp; heating &gt; a/c condensers エアコン部品（冷媒保持） ac"><td class='num'>184828</td><td>Commercial Truck Parts &gt; Air Conditioning &amp; Heating &gt; A/C Condensers</td><td><span class='mk mk-ca'>注意</span></td><td>エアコン部品（冷媒保持）</td></tr>
+<tr data-search="184829 commercial truck parts &gt; air conditioning &amp; heating &gt; a/c evaporators エアコン部品（冷媒保持） ac"><td class='num'>184829</td><td>Commercial Truck Parts &gt; Air Conditioning &amp; Heating &gt; A/C Evaporators</td><td><span class='mk mk-ca'>注意</span></td><td>エアコン部品（冷媒保持）</td></tr>
+<tr data-search="184830 commercial truck parts &gt; air conditioning &amp; heating &gt; a/c hoses &amp; fittings エアコン部品（冷媒保持） ac"><td class='num'>184830</td><td>Commercial Truck Parts &gt; Air Conditioning &amp; Heating &gt; A/C Hoses &amp; Fittings</td><td><span class='mk mk-ca'>注意</span></td><td>エアコン部品（冷媒保持）</td></tr>
+<tr data-search="262093 car &amp; truck parts &amp; accessories &gt; electric, hybrid &amp; phev specific parts &gt; air conditioner compressors エアコン部品（冷媒保持） ac"><td class='num'>262093</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Electric, Hybrid &amp; PHEV Specific Parts &gt; Air Conditioner Compressors</td><td><span class='mk mk-ca'>注意</span></td><td>エアコン部品（冷媒保持）</td></tr>
+<tr data-search="177710 car &amp; truck parts &amp; accessories &gt; interior parts &amp; accessories &gt; interior safety &gt; airbags エアバッグ関連 airbag"><td class='num'>177710</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Interior Parts &amp; Accessories &gt; Interior Safety &gt; Airbags</td><td><span class='mk mk-ex'>外す</span></td><td>エアバッグ関連</td></tr>
+<tr data-search="177711 car &amp; truck parts &amp; accessories &gt; interior parts &amp; accessories &gt; interior safety &gt; airbag parts エアバッグ関連 airbag"><td class='num'>177711</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Interior Parts &amp; Accessories &gt; Interior Safety &gt; Airbag Parts</td><td><span class='mk mk-ex'>外す</span></td><td>エアバッグ関連</td></tr>
+<tr data-search="179475 automotive tools &amp; supplies &gt; diagnostic service tools &gt; air bag scan tools/simulators エアバッグ関連 airbag"><td class='num'>179475</td><td>Automotive Tools &amp; Supplies &gt; Diagnostic Service Tools &gt; Air Bag Scan Tools/Simulators</td><td><span class='mk mk-ca'>注意</span></td><td>エアバッグ関連</td></tr>
+<tr data-search="49782 motorcycle &amp; scooter parts &amp; accessories &gt; electrical &amp; ignition components &gt; batteries バッテリー battery"><td class='num'>49782</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Electrical &amp; Ignition Components &gt; Batteries</td><td><span class='mk mk-ex'>外す</span></td><td>バッテリー</td></tr>
+<tr data-search="177703 car &amp; truck parts &amp; accessories &gt; electric, hybrid &amp; phev specific parts &gt; batteries, bms &amp; fuel cells &gt; batteries バッテリー battery"><td class='num'>177703</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Electric, Hybrid &amp; PHEV Specific Parts &gt; Batteries, BMS &amp; Fuel Cells &gt; Batteries</td><td><span class='mk mk-ex'>外す</span></td><td>バッテリー</td></tr>
+<tr data-search="179846 car &amp; truck parts &amp; accessories &gt; starters, alternators, ecus &amp; wiring &gt; batteries バッテリー battery"><td class='num'>179846</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Starters, Alternators, ECUs &amp; Wiring &gt; Batteries</td><td><span class='mk mk-ex'>外す</span></td><td>バッテリー</td></tr>
+<tr data-search="184479 boat parts &gt; marine batteries バッテリー battery"><td class='num'>184479</td><td>Boat Parts &gt; Marine Batteries</td><td><span class='mk mk-ex'>外す</span></td><td>バッテリー</td></tr>
+<tr data-search="184624 in-car technology, gps &amp; security &gt; gps &amp; sat nav devices &gt; gps accessories &gt; replacement batteries バッテリー battery"><td class='num'>184624</td><td>In-Car Technology, GPS &amp; Security &gt; GPS &amp; Sat Nav Devices &gt; GPS Accessories &gt; Replacement Batteries</td><td><span class='mk mk-ex'>外す</span></td><td>バッテリー</td></tr>
+<tr data-search="184845 commercial truck parts &gt; ignition, charging &amp; starting &gt; batteries バッテリー battery"><td class='num'>184845</td><td>Commercial Truck Parts &gt; Ignition, Charging &amp; Starting &gt; Batteries</td><td><span class='mk mk-ex'>外す</span></td><td>バッテリー</td></tr>
+<tr data-search="262096 car &amp; truck parts &amp; accessories &gt; electric, hybrid &amp; phev specific parts &gt; batteries, bms &amp; fuel cells &gt; battery &amp; bms units バッテリー battery"><td class='num'>262096</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Electric, Hybrid &amp; PHEV Specific Parts &gt; Batteries, BMS &amp; Fuel Cells &gt; Battery &amp; BMS Units</td><td><span class='mk mk-ex'>外す</span></td><td>バッテリー</td></tr>
+<tr data-search="262097 car &amp; truck parts &amp; accessories &gt; electric, hybrid &amp; phev specific parts &gt; batteries, bms &amp; fuel cells &gt; fuel cells &amp; parts バッテリー battery"><td class='num'>262097</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Electric, Hybrid &amp; PHEV Specific Parts &gt; Batteries, BMS &amp; Fuel Cells &gt; Fuel Cells &amp; Parts</td><td><span class='mk mk-ca'>注意</span></td><td>バッテリー</td></tr>
+<tr data-search="263195 motorcycle &amp; scooter parts &amp; accessories &gt; electric motorcycle &amp; scooter parts &gt; batteries, bms &amp; charging units &gt; batteries バッテリー battery"><td class='num'>263195</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Electric Motorcycle &amp; Scooter Parts &gt; Batteries, BMS &amp; Charging Units &gt; Batteries</td><td><span class='mk mk-ex'>外す</span></td><td>バッテリー</td></tr>
+<tr data-search="263198 motorcycle &amp; scooter parts &amp; accessories &gt; electric motorcycle &amp; scooter parts &gt; batteries, bms &amp; charging units &gt; battery &amp; bms units バッテリー battery"><td class='num'>263198</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Electric Motorcycle &amp; Scooter Parts &gt; Batteries, BMS &amp; Charging Units &gt; Battery &amp; BMS Units</td><td><span class='mk mk-ex'>外す</span></td><td>バッテリー</td></tr>
+<tr data-search="263254 atv, side-by-side &amp; utv parts &amp; accessories &gt; electric atv, sxs &amp; utv parts &gt; batteries, bms &amp; charging units &gt; batteries バッテリー battery"><td class='num'>263254</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Electric ATV, SxS &amp; UTV Parts &gt; Batteries, BMS &amp; Charging Units &gt; Batteries</td><td><span class='mk mk-ex'>外す</span></td><td>バッテリー</td></tr>
+<tr data-search="263257 atv, side-by-side &amp; utv parts &amp; accessories &gt; electric atv, sxs &amp; utv parts &gt; batteries, bms &amp; charging units &gt; battery &amp; bms units バッテリー battery"><td class='num'>263257</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Electric ATV, SxS &amp; UTV Parts &gt; Batteries, BMS &amp; Charging Units &gt; Battery &amp; BMS Units</td><td><span class='mk mk-ex'>外す</span></td><td>バッテリー</td></tr>
+<tr data-search="263285 atv, side-by-side &amp; utv parts &amp; accessories &gt; electrical &amp; ignition components &gt; batteries バッテリー battery"><td class='num'>263285</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Electrical &amp; Ignition Components &gt; Batteries</td><td><span class='mk mk-ex'>外す</span></td><td>バッテリー</td></tr>
+<tr data-search="33561 car &amp; truck parts &amp; accessories &gt; brakes &amp; brake parts &gt; brake hoses, lines &amp; fittings ブレーキホース／ライン brakehose"><td class='num'>33561</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Brakes &amp; Brake Parts &gt; Brake Hoses, Lines &amp; Fittings</td><td><span class='mk mk-ex'>外す</span></td><td>ブレーキホース／ライン</td></tr>
+<tr data-search="175552 performance &amp; racing parts &gt; auto performance parts &gt; chassis, suspension &amp; brakes &gt; performance brake lines, hoses ブレーキホース／ライン brakehose"><td class='num'>175552</td><td>Performance &amp; Racing Parts &gt; Auto Performance Parts &gt; Chassis, Suspension &amp; Brakes &gt; Performance Brake Lines, Hoses</td><td><span class='mk mk-ex'>外す</span></td><td>ブレーキホース／ライン</td></tr>
+<tr data-search="177924 motorcycle &amp; scooter parts &amp; accessories &gt; brakes &amp; brake parts &gt; brake lines, hoses &amp; fittings ブレーキホース／ライン brakehose"><td class='num'>177924</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Brakes &amp; Brake Parts &gt; Brake Lines, Hoses &amp; Fittings</td><td><span class='mk mk-ex'>外す</span></td><td>ブレーキホース／ライン</td></tr>
+<tr data-search="178923 atv, side-by-side &amp; utv parts &amp; accessories &gt; brakes &amp; brake parts &gt; brake lines, hoses &amp; fittings ブレーキホース／ライン brakehose"><td class='num'>178923</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Brakes &amp; Brake Parts &gt; Brake Lines, Hoses &amp; Fittings</td><td><span class='mk mk-ex'>外す</span></td><td>ブレーキホース／ライン</td></tr>
+<tr data-search="184702 commercial truck parts &gt; brakes &amp; brake parts &gt; brake lines, hoses &amp; fittings ブレーキホース／ライン brakehose"><td class='num'>184702</td><td>Commercial Truck Parts &gt; Brakes &amp; Brake Parts &gt; Brake Lines, Hoses &amp; Fittings</td><td><span class='mk mk-ex'>外す</span></td><td>ブレーキホース／ライン</td></tr>
+<tr data-search="33629 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; catalytic converters 触媒コンバーター／dpf catalytic"><td class='num'>33629</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Catalytic Converters</td><td><span class='mk mk-ex'>外す</span></td><td>触媒コンバーター／DPF</td></tr>
+<tr data-search="174028 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; particulate filters 触媒コンバーター／dpf catalytic"><td class='num'>174028</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Particulate Filters</td><td><span class='mk mk-ex'>外す</span></td><td>触媒コンバーター／DPF</td></tr>
+<tr data-search="263415 motorcycle &amp; scooter parts &amp; accessories &gt; exhaust &amp; emission systems &gt; catalytic converters 触媒コンバーター／dpf catalytic"><td class='num'>263415</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Catalytic Converters</td><td><span class='mk mk-ex'>外す</span></td><td>触媒コンバーター／DPF</td></tr>
+<tr data-search="263430 atv, side-by-side &amp; utv parts &amp; accessories &gt; exhaust &amp; emission systems &gt; catalytic converters &amp; diesel particulate filters 触媒コンバーター／dpf catalytic"><td class='num'>263430</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Catalytic Converters &amp; Diesel Particulate Filters</td><td><span class='mk mk-ex'>外す</span></td><td>触媒コンバーター／DPF</td></tr>
+<tr data-search="133203 performance &amp; racing parts &gt; auto performance parts &gt; induction &gt; nitrous oxide 油脂・薬品・塗料 chemical"><td class='num'>133203</td><td>Performance &amp; Racing Parts &gt; Auto Performance Parts &gt; Induction &gt; Nitrous Oxide</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179422 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; automotive tape &amp; adhesives 油脂・薬品・塗料 chemical"><td class='num'>179422</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Automotive Tape &amp; Adhesives</td><td><span class='mk mk-ca'>注意</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179424 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; auto paint additives &gt; flake &amp; pearl 油脂・薬品・塗料 chemical"><td class='num'>179424</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Auto Paint Additives &gt; Flake &amp; Pearl</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179425 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; auto paint additives &gt; paint catalysts 油脂・薬品・塗料 chemical"><td class='num'>179425</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Auto Paint Additives &gt; Paint Catalysts</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179426 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; auto paint additives &gt; reducers/thinners 油脂・薬品・塗料 chemical"><td class='num'>179426</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Auto Paint Additives &gt; Reducers/Thinners</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179427 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; auto paint additives &gt; other auto paint additives 油脂・薬品・塗料 chemical"><td class='num'>179427</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Auto Paint Additives &gt; Other Auto Paint Additives</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179428 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; automotive paint kits 油脂・薬品・塗料 chemical"><td class='num'>179428</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Automotive Paint Kits</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179429 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; automotive paint supplies 油脂・薬品・塗料 chemical"><td class='num'>179429</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Automotive Paint Supplies</td><td><span class='mk mk-ca'>注意</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179430 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; automotive primers 油脂・薬品・塗料 chemical"><td class='num'>179430</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Automotive Primers</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179431 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; multi-stage auto paint 油脂・薬品・塗料 chemical"><td class='num'>179431</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Multi-Stage Auto Paint</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179432 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; single-stage auto paint 油脂・薬品・塗料 chemical"><td class='num'>179432</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Single-Stage Auto Paint</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179434 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; specialty paint &amp; coatings &gt; color shift paint 油脂・薬品・塗料 chemical"><td class='num'>179434</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Specialty Paint &amp; Coatings &gt; Color Shift Paint</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179435 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; specialty paint &amp; coatings &gt; high heat &amp; engine paint 油脂・薬品・塗料 chemical"><td class='num'>179435</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Specialty Paint &amp; Coatings &gt; High Heat &amp; Engine Paint</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179436 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; specialty paint &amp; coatings &gt; industrial coatings 油脂・薬品・塗料 chemical"><td class='num'>179436</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Specialty Paint &amp; Coatings &gt; Industrial Coatings</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179437 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; specialty paint &amp; coatings &gt; rust prevention 油脂・薬品・塗料 chemical"><td class='num'>179437</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Specialty Paint &amp; Coatings &gt; Rust Prevention</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179438 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; specialty paint &amp; coatings &gt; truck bed liner paint 油脂・薬品・塗料 chemical"><td class='num'>179438</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Specialty Paint &amp; Coatings &gt; Truck Bed Liner Paint</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179439 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; specialty paint &amp; coatings &gt; other specialty paint 油脂・薬品・塗料 chemical"><td class='num'>179439</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Specialty Paint &amp; Coatings &gt; Other Specialty Paint</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179440 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; touchup &amp; spray paint 油脂・薬品・塗料 chemical"><td class='num'>179440</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Touchup &amp; Spray Paint</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179441 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; other automotive paint 油脂・薬品・塗料 chemical"><td class='num'>179441</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Other Automotive Paint</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179449 automotive tools &amp; supplies &gt; automotive care &amp; detailing &gt; bug &amp; tar removers 油脂・薬品・塗料 chemical"><td class='num'>179449</td><td>Automotive Tools &amp; Supplies &gt; Automotive Care &amp; Detailing &gt; Bug &amp; Tar Removers</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179450 automotive tools &amp; supplies &gt; automotive care &amp; detailing &gt; car wash soap 油脂・薬品・塗料 chemical"><td class='num'>179450</td><td>Automotive Tools &amp; Supplies &gt; Automotive Care &amp; Detailing &gt; Car Wash Soap</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179451 automotive tools &amp; supplies &gt; automotive care &amp; detailing &gt; glass care &amp; water repellant 油脂・薬品・塗料 chemical"><td class='num'>179451</td><td>Automotive Tools &amp; Supplies &gt; Automotive Care &amp; Detailing &gt; Glass Care &amp; Water Repellant</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179453 automotive tools &amp; supplies &gt; automotive care &amp; detailing &gt; interior cleaners &amp; protectant 油脂・薬品・塗料 chemical"><td class='num'>179453</td><td>Automotive Tools &amp; Supplies &gt; Automotive Care &amp; Detailing &gt; Interior Cleaners &amp; Protectant</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179458 automotive tools &amp; supplies &gt; automotive care &amp; detailing &gt; wash, wax &amp; cleaning kits 油脂・薬品・塗料 chemical"><td class='num'>179458</td><td>Automotive Tools &amp; Supplies &gt; Automotive Care &amp; Detailing &gt; Wash, Wax &amp; Cleaning Kits</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179460 automotive tools &amp; supplies &gt; automotive care &amp; detailing &gt; waxes &amp; polishes 油脂・薬品・塗料 chemical"><td class='num'>179460</td><td>Automotive Tools &amp; Supplies &gt; Automotive Care &amp; Detailing &gt; Waxes &amp; Polishes</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179461 automotive tools &amp; supplies &gt; automotive care &amp; detailing &gt; wheel/tire cleaners &amp; polishes 油脂・薬品・塗料 chemical"><td class='num'>179461</td><td>Automotive Tools &amp; Supplies &gt; Automotive Care &amp; Detailing &gt; Wheel/Tire Cleaners &amp; Polishes</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179462 automotive tools &amp; supplies &gt; automotive care &amp; detailing &gt; other automotive care supplies 油脂・薬品・塗料 chemical"><td class='num'>179462</td><td>Automotive Tools &amp; Supplies &gt; Automotive Care &amp; Detailing &gt; Other Automotive Care Supplies</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179488 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; air conditioning chemicals 油脂・薬品・塗料 chemical"><td class='num'>179488</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Air Conditioning Chemicals</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179489 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; antifreeze 油脂・薬品・塗料 chemical"><td class='num'>179489</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Antifreeze</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179490 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; brake lubricants &amp; cleaners 油脂・薬品・塗料 chemical"><td class='num'>179490</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Brake Lubricants &amp; Cleaners</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179491 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; engine cleaners 油脂・薬品・塗料 chemical"><td class='num'>179491</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Engine Cleaners</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179492 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; fuel additives &amp; treatments 油脂・薬品・塗料 chemical"><td class='num'>179492</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Fuel Additives &amp; Treatments</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179493 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; gasket makers/removers/sealers 油脂・薬品・塗料 chemical"><td class='num'>179493</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Gasket Makers/Removers/Sealers</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179494 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; gear/differential oil 油脂・薬品・塗料 chemical"><td class='num'>179494</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Gear/Differential Oil</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179495 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; grease &amp; lube 油脂・薬品・塗料 chemical"><td class='num'>179495</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Grease &amp; Lube</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179496 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; motor oil 油脂・薬品・塗料 chemical"><td class='num'>179496</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Motor Oil</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179497 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; power steering fluids 油脂・薬品・塗料 chemical"><td class='num'>179497</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Power Steering Fluids</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179498 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; radiator additives &amp; sealants 油脂・薬品・塗料 chemical"><td class='num'>179498</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Radiator Additives &amp; Sealants</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179499 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; starting fluids 油脂・薬品・塗料 chemical"><td class='num'>179499</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Starting Fluids</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179500 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; tire sealant 油脂・薬品・塗料 chemical"><td class='num'>179500</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Tire Sealant</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179501 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; transmission fluid 油脂・薬品・塗料 chemical"><td class='num'>179501</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Transmission Fluid</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179502 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; windshield wiper fluid 油脂・薬品・塗料 chemical"><td class='num'>179502</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Windshield Wiper Fluid</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="179503 automotive tools &amp; supplies &gt; fluids &amp; chemicals &gt; other fluids &amp; chemicals 油脂・薬品・塗料 chemical"><td class='num'>179503</td><td>Automotive Tools &amp; Supplies &gt; Fluids &amp; Chemicals &gt; Other Fluids &amp; Chemicals</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="180038 automotive tools &amp; supplies &gt; auto paints &amp; supplies &gt; automotive clear coats 油脂・薬品・塗料 chemical"><td class='num'>180038</td><td>Automotive Tools &amp; Supplies &gt; Auto Paints &amp; Supplies &gt; Automotive Clear Coats</td><td><span class='mk mk-ex'>外す</span></td><td>油脂・薬品・塗料</td></tr>
+<tr data-search="33596 car &amp; truck parts &amp; accessories &gt; starters, alternators, ecus &amp; wiring &gt; ecus &amp; computer modules 純正ecu ecu"><td class='num'>33596</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Starters, Alternators, ECUs &amp; Wiring &gt; ECUs &amp; Computer Modules</td><td><span class='mk mk-ca'>注意</span></td><td>純正ECU</td></tr>
+<tr data-search="177933 motorcycle &amp; scooter parts &amp; accessories &gt; electrical &amp; ignition components &gt; ecus, cdis &amp; computer modules 純正ecu ecu"><td class='num'>177933</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Electrical &amp; Ignition Components &gt; ECUs, CDIs &amp; Computer Modules</td><td><span class='mk mk-ca'>注意</span></td><td>純正ECU</td></tr>
+<tr data-search="263289 atv, side-by-side &amp; utv parts &amp; accessories &gt; electrical &amp; ignition components &gt; ecus, cdis &amp; computer modules 純正ecu ecu"><td class='num'>263289</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Electrical &amp; Ignition Components &gt; ECUs, CDIs &amp; Computer Modules</td><td><span class='mk mk-ca'>注意</span></td><td>純正ECU</td></tr>
+<tr data-search="33606 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; air bypass valves 排気・排出系部品（触媒以外） exhaust"><td class='num'>33606</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Air Bypass Valves</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="33607 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; egr parts &amp; valves 排気・排出系部品（触媒以外） exhaust"><td class='num'>33607</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; EGR Parts &amp; Valves</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="33610 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; secondary air &amp; smog pumps 排気・排出系部品（触媒以外） exhaust"><td class='num'>33610</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Secondary Air &amp; Smog Pumps</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="33630 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; exhaust system kits 排気・排出系部品（触媒以外） exhaust"><td class='num'>33630</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Exhaust System Kits</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="33632 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; manifolds &amp; headers 排気・排出系部品（触媒以外） exhaust"><td class='num'>33632</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Manifolds &amp; Headers</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="33633 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; exhaust pipes &amp; tips 排気・排出系部品（触媒以外） exhaust"><td class='num'>33633</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Exhaust Pipes &amp; Tips</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="33636 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; mufflers &amp; resonators 排気・排出系部品（触媒以外） exhaust"><td class='num'>33636</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Mufflers &amp; Resonators</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="43978 atv, side-by-side &amp; utv parts &amp; accessories &gt; exhaust &amp; emission systems &gt; other exhaust &amp; emission system parts 排気・排出系部品（触媒以外） exhaust"><td class='num'>43978</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Other Exhaust &amp; Emission System Parts</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="46097 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; other exhaust &amp; emission parts 排気・排出系部品（触媒以外） exhaust"><td class='num'>46097</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Other Exhaust &amp; Emission Parts</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="63276 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; oxygen sensors 排気・排出系部品（触媒以外） exhaust"><td class='num'>63276</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Oxygen Sensors</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="177996 motorcycle &amp; scooter parts &amp; accessories &gt; exhaust &amp; emission systems &gt; exhaust system kits 排気・排出系部品（触媒以外） exhaust"><td class='num'>177996</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Exhaust System Kits</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="177997 motorcycle &amp; scooter parts &amp; accessories &gt; exhaust &amp; emission systems &gt; manifolds &amp; headers 排気・排出系部品（触媒以外） exhaust"><td class='num'>177997</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Manifolds &amp; Headers</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="177998 motorcycle &amp; scooter parts &amp; accessories &gt; exhaust &amp; emission systems &gt; oxygen sensors 排気・排出系部品（触媒以外） exhaust"><td class='num'>177998</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Oxygen Sensors</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="177999 motorcycle &amp; scooter parts &amp; accessories &gt; exhaust &amp; emission systems &gt; exhaust pipes &amp; tips 排気・排出系部品（触媒以外） exhaust"><td class='num'>177999</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Exhaust Pipes &amp; Tips</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="178000 motorcycle &amp; scooter parts &amp; accessories &gt; exhaust &amp; emission systems &gt; silencers, mufflers &amp; baffles 排気・排出系部品（触媒以外） exhaust"><td class='num'>178000</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Silencers, Mufflers &amp; Baffles</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="178001 motorcycle &amp; scooter parts &amp; accessories &gt; exhaust &amp; emission systems &gt; other exhaust &amp; emission system parts 排気・排出系部品（触媒以外） exhaust"><td class='num'>178001</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Other Exhaust &amp; Emission System Parts</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="184764 commercial truck parts &gt; exhaust &amp; emissions &gt; egr coolers 排気・排出系部品（触媒以外） exhaust"><td class='num'>184764</td><td>Commercial Truck Parts &gt; Exhaust &amp; Emissions &gt; EGR Coolers</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="184765 commercial truck parts &gt; exhaust &amp; emissions &gt; egr valves 排気・排出系部品（触媒以外） exhaust"><td class='num'>184765</td><td>Commercial Truck Parts &gt; Exhaust &amp; Emissions &gt; EGR Valves</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="184766 commercial truck parts &gt; exhaust &amp; emissions &gt; exhaust manifolds 排気・排出系部品（触媒以外） exhaust"><td class='num'>184766</td><td>Commercial Truck Parts &gt; Exhaust &amp; Emissions &gt; Exhaust Manifolds</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="184767 commercial truck parts &gt; exhaust &amp; emissions &gt; exhaust pipes 排気・排出系部品（触媒以外） exhaust"><td class='num'>184767</td><td>Commercial Truck Parts &gt; Exhaust &amp; Emissions &gt; Exhaust Pipes</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="184790 commercial truck parts &gt; exhaust &amp; emissions &gt; mufflers 排気・排出系部品（触媒以外） exhaust"><td class='num'>184790</td><td>Commercial Truck Parts &gt; Exhaust &amp; Emissions &gt; Mufflers</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="184791 commercial truck parts &gt; exhaust &amp; emissions &gt; other exhaust &amp; emissions 排気・排出系部品（触媒以外） exhaust"><td class='num'>184791</td><td>Commercial Truck Parts &gt; Exhaust &amp; Emissions &gt; Other Exhaust &amp; Emissions</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="261897 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; solenoids 排気・排出系部品（触媒以外） exhaust"><td class='num'>261897</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Solenoids</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="261899 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; fuel vapor canisters 排気・排出系部品（触媒以外） exhaust"><td class='num'>261899</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Fuel Vapor Canisters</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="262142 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; diesel exhaust fluid system parts 排気・排出系部品（触媒以外） exhaust"><td class='num'>262142</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Diesel Exhaust Fluid System Parts</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="262143 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; emissions hardware &amp; components 排気・排出系部品（触媒以外） exhaust"><td class='num'>262143</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Emissions Hardware &amp; Components</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="262144 car &amp; truck parts &amp; accessories &gt; exhaust &amp; emission systems &gt; switches 排気・排出系部品（触媒以外） exhaust"><td class='num'>262144</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Switches</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="263416 motorcycle &amp; scooter parts &amp; accessories &gt; exhaust &amp; emission systems &gt; evap components 排気・排出系部品（触媒以外） exhaust"><td class='num'>263416</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; EVAP Components</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="263432 atv, side-by-side &amp; utv parts &amp; accessories &gt; exhaust &amp; emission systems &gt; evap components 排気・排出系部品（触媒以外） exhaust"><td class='num'>263432</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; EVAP Components</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="263434 atv, side-by-side &amp; utv parts &amp; accessories &gt; exhaust &amp; emission systems &gt; exhaust pipes &amp; tips 排気・排出系部品（触媒以外） exhaust"><td class='num'>263434</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Exhaust Pipes &amp; Tips</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="263435 atv, side-by-side &amp; utv parts &amp; accessories &gt; exhaust &amp; emission systems &gt; exhaust system kits 排気・排出系部品（触媒以外） exhaust"><td class='num'>263435</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Exhaust System Kits</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="263437 atv, side-by-side &amp; utv parts &amp; accessories &gt; exhaust &amp; emission systems &gt; manifolds &amp; headers 排気・排出系部品（触媒以外） exhaust"><td class='num'>263437</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Manifolds &amp; Headers</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="263438 atv, side-by-side &amp; utv parts &amp; accessories &gt; exhaust &amp; emission systems &gt; oxygen sensors 排気・排出系部品（触媒以外） exhaust"><td class='num'>263438</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Oxygen Sensors</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="263439 atv, side-by-side &amp; utv parts &amp; accessories &gt; exhaust &amp; emission systems &gt; silencers, mufflers &amp; baffles 排気・排出系部品（触媒以外） exhaust"><td class='num'>263439</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Exhaust &amp; Emission Systems &gt; Silencers, Mufflers &amp; Baffles</td><td><span class='mk mk-ca'>注意</span></td><td>排気・排出系部品（触媒以外）</td></tr>
+<tr data-search="57357 car &amp; truck parts &amp; accessories &gt; brakes &amp; brake parts &gt; brake pads 摩擦材（ブレーキパッド／シュー・クラッチ板） friction"><td class='num'>57357</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Brakes &amp; Brake Parts &gt; Brake Pads</td><td><span class='mk mk-ca'>注意</span></td><td>摩擦材（ブレーキパッド／シュー・クラッチ板）</td></tr>
+<tr data-search="61739 car &amp; truck parts &amp; accessories &gt; brakes &amp; brake parts &gt; brake shoes 摩擦材（ブレーキパッド／シュー・クラッチ板） friction"><td class='num'>61739</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Brakes &amp; Brake Parts &gt; Brake Shoes</td><td><span class='mk mk-ca'>注意</span></td><td>摩擦材（ブレーキパッド／シュー・クラッチ板）</td></tr>
+<tr data-search="177925 motorcycle &amp; scooter parts &amp; accessories &gt; brakes &amp; brake parts &gt; brake pads 摩擦材（ブレーキパッド／シュー・クラッチ板） friction"><td class='num'>177925</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Brakes &amp; Brake Parts &gt; Brake Pads</td><td><span class='mk mk-ca'>注意</span></td><td>摩擦材（ブレーキパッド／シュー・クラッチ板）</td></tr>
+<tr data-search="177926 motorcycle &amp; scooter parts &amp; accessories &gt; brakes &amp; brake parts &gt; brake shoes 摩擦材（ブレーキパッド／シュー・クラッチ板） friction"><td class='num'>177926</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Brakes &amp; Brake Parts &gt; Brake Shoes</td><td><span class='mk mk-ca'>注意</span></td><td>摩擦材（ブレーキパッド／シュー・クラッチ板）</td></tr>
+<tr data-search="177939 motorcycle &amp; scooter parts &amp; accessories &gt; transmission &amp; drivetrain &gt; clutch parts &amp; kits &gt; clutch plates &amp; discs 摩擦材（ブレーキパッド／シュー・クラッチ板） friction"><td class='num'>177939</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Transmission &amp; Drivetrain &gt; Clutch Parts &amp; Kits &gt; Clutch Plates &amp; Discs</td><td><span class='mk mk-ca'>注意</span></td><td>摩擦材（ブレーキパッド／シュー・クラッチ板）</td></tr>
+<tr data-search="178925 atv, side-by-side &amp; utv parts &amp; accessories &gt; brakes &amp; brake parts &gt; brake pads 摩擦材（ブレーキパッド／シュー・クラッチ板） friction"><td class='num'>178925</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Brakes &amp; Brake Parts &gt; Brake Pads</td><td><span class='mk mk-ca'>注意</span></td><td>摩擦材（ブレーキパッド／シュー・クラッチ板）</td></tr>
+<tr data-search="184703 commercial truck parts &gt; brakes &amp; brake parts &gt; brake pads 摩擦材（ブレーキパッド／シュー・クラッチ板） friction"><td class='num'>184703</td><td>Commercial Truck Parts &gt; Brakes &amp; Brake Parts &gt; Brake Pads</td><td><span class='mk mk-ca'>注意</span></td><td>摩擦材（ブレーキパッド／シュー・クラッチ板）</td></tr>
+<tr data-search="184705 commercial truck parts &gt; brakes &amp; brake parts &gt; brake shoes 摩擦材（ブレーキパッド／シュー・クラッチ板） friction"><td class='num'>184705</td><td>Commercial Truck Parts &gt; Brakes &amp; Brake Parts &gt; Brake Shoes</td><td><span class='mk mk-ca'>注意</span></td><td>摩擦材（ブレーキパッド／シュー・クラッチ板）</td></tr>
+<tr data-search="263059 atv, side-by-side &amp; utv parts &amp; accessories &gt; brakes &amp; brake parts &gt; brake shoes 摩擦材（ブレーキパッド／シュー・クラッチ板） friction"><td class='num'>263059</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Brakes &amp; Brake Parts &gt; Brake Shoes</td><td><span class='mk mk-ca'>注意</span></td><td>摩擦材（ブレーキパッド／シュー・クラッチ板）</td></tr>
+<tr data-search="263459 atv, side-by-side &amp; utv parts &amp; accessories &gt; transmission &amp; drivetrain &gt; clutch parts &amp; kits &gt; clutch plates &amp; discs 摩擦材（ブレーキパッド／シュー・クラッチ板） friction"><td class='num'>263459</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Transmission &amp; Drivetrain &gt; Clutch Parts &amp; Kits &gt; Clutch Plates &amp; Discs</td><td><span class='mk mk-ca'>注意</span></td><td>摩擦材（ブレーキパッド／シュー・クラッチ板）</td></tr>
+<tr data-search="33556 car &amp; truck parts &amp; accessories &gt; air &amp; fuel delivery &gt; fuel tanks &amp; filler necks 燃料タンク fueltank"><td class='num'>33556</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Air &amp; Fuel Delivery &gt; Fuel Tanks &amp; Filler Necks</td><td><span class='mk mk-ca'>注意</span></td><td>燃料タンク</td></tr>
+<tr data-search="35563 motorcycle &amp; scooter parts &amp; accessories &gt; air intake &amp; fuel delivery &gt; fuel tanks 燃料タンク fueltank"><td class='num'>35563</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Air Intake &amp; Fuel Delivery &gt; Fuel Tanks</td><td><span class='mk mk-ca'>注意</span></td><td>燃料タンク</td></tr>
+<tr data-search="43965 atv, side-by-side &amp; utv parts &amp; accessories &gt; air intake &amp; fuel delivery &gt; fuel tanks 燃料タンク fueltank"><td class='num'>43965</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Air Intake &amp; Fuel Delivery &gt; Fuel Tanks</td><td><span class='mk mk-ca'>注意</span></td><td>燃料タンク</td></tr>
+<tr data-search="175568 performance &amp; racing parts &gt; auto performance parts &gt; fuel systems &gt; fuel cells 燃料タンク fueltank"><td class='num'>175568</td><td>Performance &amp; Racing Parts &gt; Auto Performance Parts &gt; Fuel Systems &gt; Fuel Cells</td><td><span class='mk mk-ca'>注意</span></td><td>燃料タンク</td></tr>
+<tr data-search="184690 commercial truck parts &gt; air intake &amp; fuel delivery &gt; fuel tanks 燃料タンク fueltank"><td class='num'>184690</td><td>Commercial Truck Parts &gt; Air Intake &amp; Fuel Delivery &gt; Fuel Tanks</td><td><span class='mk mk-ca'>注意</span></td><td>燃料タンク</td></tr>
+<tr data-search="33684 car &amp; truck parts &amp; accessories &gt; exterior parts &amp; accessories &gt; glass &amp; window parts &gt; auto glass ガラス・フロントガラス glass"><td class='num'>33684</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exterior Parts &amp; Accessories &gt; Glass &amp; Window Parts &gt; Auto Glass</td><td><span class='mk mk-ex'>外す</span></td><td>ガラス・フロントガラス</td></tr>
+<tr data-search="35567 motorcycle &amp; scooter parts &amp; accessories &gt; body &amp; frame &gt; windshields ガラス・フロントガラス glass"><td class='num'>35567</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Body &amp; Frame &gt; Windshields</td><td><span class='mk mk-ca'>注意</span></td><td>ガラス・フロントガラス</td></tr>
+<tr data-search="100467 snowmobile parts &gt; windshields ガラス・フロントガラス glass"><td class='num'>100467</td><td>Snowmobile Parts &gt; Windshields</td><td><span class='mk mk-ca'>注意</span></td><td>ガラス・フロントガラス</td></tr>
+<tr data-search="158943 golf cart parts &amp; accessories &gt; golf cart windshields ガラス・フロントガラス glass"><td class='num'>158943</td><td>Golf Cart Parts &amp; Accessories &gt; Golf Cart Windshields</td><td><span class='mk mk-ca'>注意</span></td><td>ガラス・フロントガラス</td></tr>
+<tr data-search="178918 atv, side-by-side &amp; utv parts &amp; accessories &gt; body &amp; frame &gt; body parts, doors &amp; fenders &gt; windshields &amp; windows ガラス・フロントガラス glass"><td class='num'>178918</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Body &amp; Frame &gt; Body Parts, Doors &amp; Fenders &gt; Windshields &amp; Windows</td><td><span class='mk mk-ex'>外す</span></td><td>ガラス・フロントガラス</td></tr>
+<tr data-search="184823 commercial truck parts &gt; glass &gt; windshields ガラス・フロントガラス glass"><td class='num'>184823</td><td>Commercial Truck Parts &gt; Glass &gt; Windshields</td><td><span class='mk mk-ex'>外す</span></td><td>ガラス・フロントガラス</td></tr>
+<tr data-search="184824 commercial truck parts &gt; glass &gt; other glass ガラス・フロントガラス glass"><td class='num'>184824</td><td>Commercial Truck Parts &gt; Glass &gt; Other Glass</td><td><span class='mk mk-ex'>外す</span></td><td>ガラス・フロントガラス</td></tr>
+<tr data-search="173678 performance &amp; racing parts &gt; safety equipment &gt; helmets ヘルメット helmet"><td class='num'>173678</td><td>Performance &amp; Racing Parts &gt; Safety Equipment &gt; Helmets</td><td><span class='mk mk-ex'>外す</span></td><td>ヘルメット</td></tr>
+<tr data-search="177076 apparel, protective gear &amp; merchandise &gt; helmets &amp; accessories &gt; motorcycle &amp; powersport helmets ヘルメット helmet"><td class='num'>177076</td><td>Apparel, Protective Gear &amp; Merchandise &gt; Helmets &amp; Accessories &gt; Motorcycle &amp; Powersport Helmets</td><td><span class='mk mk-ex'>外す</span></td><td>ヘルメット</td></tr>
+<tr data-search="40016 in-car technology, gps &amp; security &gt; dash cams, alarms &amp; security &gt; key blanks キー・キーレス・イモビライザー key"><td class='num'>40016</td><td>In-Car Technology, GPS &amp; Security &gt; Dash Cams, Alarms &amp; Security &gt; Key Blanks</td><td><span class='mk mk-ca'>注意</span></td><td>キー・キーレス・イモビライザー</td></tr>
+<tr data-search="53908 in-car technology, gps &amp; security &gt; dash cams, alarms &amp; security &gt; car keys, fobs &amp; remotes キー・キーレス・イモビライザー key"><td class='num'>53908</td><td>In-Car Technology, GPS &amp; Security &gt; Dash Cams, Alarms &amp; Security &gt; Car Keys, Fobs &amp; Remotes</td><td><span class='mk mk-ca'>注意</span></td><td>キー・キーレス・イモビライザー</td></tr>
+<tr data-search="173712 in-car technology, gps &amp; security &gt; dash cams, alarms &amp; security &gt; car immobilizers キー・キーレス・イモビライザー key"><td class='num'>173712</td><td>In-Car Technology, GPS &amp; Security &gt; Dash Cams, Alarms &amp; Security &gt; Car Immobilizers</td><td><span class='mk mk-ca'>注意</span></td><td>キー・キーレス・イモビライザー</td></tr>
+<tr data-search="177960 motorcycle &amp; scooter parts &amp; accessories &gt; electrical &amp; ignition components &gt; electrical &amp; ignition sensors &amp; switches &gt; ignition key switches キー・キーレス・イモビライザー key"><td class='num'>177960</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Electrical &amp; Ignition Components &gt; Electrical &amp; Ignition Sensors &amp; Switches &gt; Ignition Key Switches</td><td><span class='mk mk-ca'>注意</span></td><td>キー・キーレス・イモビライザー</td></tr>
+<tr data-search="184651 in-car technology, gps &amp; security &gt; dash cams, alarms &amp; security &gt; remote entry system kits キー・キーレス・イモビライザー key"><td class='num'>184651</td><td>In-Car Technology, GPS &amp; Security &gt; Dash Cams, Alarms &amp; Security &gt; Remote Entry System Kits</td><td><span class='mk mk-ca'>注意</span></td><td>キー・キーレス・イモビライザー</td></tr>
+<tr data-search="184652 in-car technology, gps &amp; security &gt; dash cams, alarms &amp; security &gt; remote start system kits キー・キーレス・イモビライザー key"><td class='num'>184652</td><td>In-Car Technology, GPS &amp; Security &gt; Dash Cams, Alarms &amp; Security &gt; Remote Start System Kits</td><td><span class='mk mk-ca'>注意</span></td><td>キー・キーレス・イモビライザー</td></tr>
+<tr data-search="263299 atv, side-by-side &amp; utv parts &amp; accessories &gt; electrical &amp; ignition components &gt; electrical &amp; ignition sensors &amp; switches &gt; ignition key switches キー・キーレス・イモビライザー key"><td class='num'>263299</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Electrical &amp; Ignition Components &gt; Electrical &amp; Ignition Sensors &amp; Switches &gt; Ignition Key Switches</td><td><span class='mk mk-ca'>注意</span></td><td>キー・キーレス・イモビライザー</td></tr>
+<tr data-search="33708 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; park &amp; combination light assemblies 灯火類 lighting"><td class='num'>33708</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Park &amp; Combination Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="33709 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; fog light assemblies 灯火類 lighting"><td class='num'>33709</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Fog Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="33710 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; headlight assemblies 灯火類 lighting"><td class='num'>33710</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Headlight Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="33712 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; interior light assemblies 灯火類 lighting"><td class='num'>33712</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Interior Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="33715 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; side marker light assemblies 灯火類 lighting"><td class='num'>33715</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Side Marker Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="33716 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; tail light assemblies 灯火類 lighting"><td class='num'>33716</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Tail Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="33717 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; turn signal light assemblies 灯火類 lighting"><td class='num'>33717</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Turn Signal Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="43980 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; other lighting &amp; lamps 灯火類 lighting"><td class='num'>43980</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Other Lighting &amp; Lamps</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="121985 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; accessory lighting &gt; warning lights 灯火類 lighting"><td class='num'>121985</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Accessory Lighting &gt; Warning Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="172517 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; light bulbs &amp; leds 灯火類 lighting"><td class='num'>172517</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Light Bulbs &amp; LEDs</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="174062 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; reflectors 灯火類 lighting"><td class='num'>174062</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Reflectors</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="174065 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; other lighting &amp; lamps 灯火類 lighting"><td class='num'>174065</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Other Lighting &amp; Lamps</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="178019 motorcycle &amp; scooter parts &amp; accessories &gt; lighting &amp; lamps &gt; light bulbs &amp; leds 灯火類 lighting"><td class='num'>178019</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Light Bulbs &amp; LEDs</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="178021 motorcycle &amp; scooter parts &amp; accessories &gt; lighting &amp; lamps &gt; fog light assemblies 灯火類 lighting"><td class='num'>178021</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Fog Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="178022 motorcycle &amp; scooter parts &amp; accessories &gt; lighting &amp; lamps &gt; headlight assemblies 灯火類 lighting"><td class='num'>178022</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Headlight Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="178023 motorcycle &amp; scooter parts &amp; accessories &gt; lighting &amp; lamps &gt; turn signal light assemblies 灯火類 lighting"><td class='num'>178023</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Turn Signal Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="178024 motorcycle &amp; scooter parts &amp; accessories &gt; lighting &amp; lamps &gt; lenses 灯火類 lighting"><td class='num'>178024</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Lenses</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="178025 motorcycle &amp; scooter parts &amp; accessories &gt; lighting &amp; lamps &gt; license plate light assemblies 灯火類 lighting"><td class='num'>178025</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; License Plate Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="178026 motorcycle &amp; scooter parts &amp; accessories &gt; lighting &amp; lamps &gt; tail &amp; brake light assemblies 灯火類 lighting"><td class='num'>178026</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Tail &amp; Brake Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="178027 motorcycle &amp; scooter parts &amp; accessories &gt; lighting &amp; lamps &gt; other lighting &amp; lamps 灯火類 lighting"><td class='num'>178027</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Other Lighting &amp; Lamps</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="184669 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; accessory lighting &gt; light bars 灯火類 lighting"><td class='num'>184669</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Accessory Lighting &gt; Light Bars</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="184877 commercial truck parts &gt; lighting &gt; backup &amp; tail lights 灯火類 lighting"><td class='num'>184877</td><td>Commercial Truck Parts &gt; Lighting &gt; Backup &amp; Tail Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="184878 commercial truck parts &gt; lighting &gt; clearance &amp; marker lights 灯火類 lighting"><td class='num'>184878</td><td>Commercial Truck Parts &gt; Lighting &gt; Clearance &amp; Marker Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="184879 commercial truck parts &gt; lighting &gt; corner lights 灯火類 lighting"><td class='num'>184879</td><td>Commercial Truck Parts &gt; Lighting &gt; Corner Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="184880 commercial truck parts &gt; lighting &gt; fog lights 灯火類 lighting"><td class='num'>184880</td><td>Commercial Truck Parts &gt; Lighting &gt; Fog Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="184881 commercial truck parts &gt; lighting &gt; headlights 灯火類 lighting"><td class='num'>184881</td><td>Commercial Truck Parts &gt; Lighting &gt; Headlights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="184882 commercial truck parts &gt; lighting &gt; interior lights 灯火類 lighting"><td class='num'>184882</td><td>Commercial Truck Parts &gt; Lighting &gt; Interior Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="184883 commercial truck parts &gt; lighting &gt; exterior accent lights 灯火類 lighting"><td class='num'>184883</td><td>Commercial Truck Parts &gt; Lighting &gt; Exterior Accent Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="184884 commercial truck parts &gt; lighting &gt; light bulbs 灯火類 lighting"><td class='num'>184884</td><td>Commercial Truck Parts &gt; Lighting &gt; Light Bulbs</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="184885 commercial truck parts &gt; lighting &gt; light covers 灯火類 lighting"><td class='num'>184885</td><td>Commercial Truck Parts &gt; Lighting &gt; Light Covers</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="184886 commercial truck parts &gt; lighting &gt; parking lights 灯火類 lighting"><td class='num'>184886</td><td>Commercial Truck Parts &gt; Lighting &gt; Parking Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="184887 commercial truck parts &gt; lighting &gt; trailer lights 灯火類 lighting"><td class='num'>184887</td><td>Commercial Truck Parts &gt; Lighting &gt; Trailer Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="184889 commercial truck parts &gt; lighting &gt; warning lights 灯火類 lighting"><td class='num'>184889</td><td>Commercial Truck Parts &gt; Lighting &gt; Warning Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="184929 commercial truck parts &gt; exterior, body &amp; frame &gt; light bars 灯火類 lighting"><td class='num'>184929</td><td>Commercial Truck Parts &gt; Exterior, Body &amp; Frame &gt; Light Bars</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="262205 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; center &amp; third brake light assemblies 灯火類 lighting"><td class='num'>262205</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Center &amp; Third Brake Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="262206 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; daytime running lights 灯火類 lighting"><td class='num'>262206</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Daytime Running Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="262207 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; headlight ballasts &amp; igniters 灯火類 lighting"><td class='num'>262207</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Headlight Ballasts &amp; Igniters</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="262208 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; license plate light assemblies 灯火類 lighting"><td class='num'>262208</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; License Plate Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="262213 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; accessory lighting &gt; accessory &amp; off road lighting 灯火類 lighting"><td class='num'>262213</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Accessory Lighting &gt; Accessory &amp; Off Road Lighting</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="262214 car &amp; truck parts &amp; accessories &gt; lighting &amp; lamps &gt; accessory lighting &gt; wheel &amp; underbody lights 灯火類 lighting"><td class='num'>262214</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Accessory Lighting &gt; Wheel &amp; Underbody Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263231 motorcycle &amp; scooter parts &amp; accessories &gt; lighting &amp; lamps &gt; daytime running lights 灯火類 lighting"><td class='num'>263231</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Daytime Running Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263232 motorcycle &amp; scooter parts &amp; accessories &gt; lighting &amp; lamps &gt; headlight ballasts &amp; igniters 灯火類 lighting"><td class='num'>263232</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Headlight Ballasts &amp; Igniters</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263234 motorcycle &amp; scooter parts &amp; accessories &gt; lighting &amp; lamps &gt; reflectors 灯火類 lighting"><td class='num'>263234</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Reflectors</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263237 motorcycle &amp; scooter parts &amp; accessories &gt; lighting &amp; lamps &gt; accessory lighting &gt; off road lighting 灯火類 lighting"><td class='num'>263237</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Accessory Lighting &gt; Off Road Lighting</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263238 motorcycle &amp; scooter parts &amp; accessories &gt; lighting &amp; lamps &gt; accessory lighting &gt; warning lights 灯火類 lighting"><td class='num'>263238</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Accessory Lighting &gt; Warning Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263239 motorcycle &amp; scooter parts &amp; accessories &gt; lighting &amp; lamps &gt; accessory lighting &gt; accessory &amp; accent lighting 灯火類 lighting"><td class='num'>263239</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Accessory Lighting &gt; Accessory &amp; Accent Lighting</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263309 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; light bulbs &amp; leds 灯火類 lighting"><td class='num'>263309</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Light Bulbs &amp; LEDs</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263310 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; daytime running lights 灯火類 lighting"><td class='num'>263310</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Daytime Running Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263311 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; fog light assemblies 灯火類 lighting"><td class='num'>263311</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Fog Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263312 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; headlight assemblies 灯火類 lighting"><td class='num'>263312</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Headlight Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263313 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; headlight ballasts &amp; igniters 灯火類 lighting"><td class='num'>263313</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Headlight Ballasts &amp; Igniters</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263315 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; license plate light assemblies 灯火類 lighting"><td class='num'>263315</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; License Plate Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263316 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; lenses 灯火類 lighting"><td class='num'>263316</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Lenses</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263317 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; tail &amp; brake light assemblies 灯火類 lighting"><td class='num'>263317</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Tail &amp; Brake Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263318 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; reflectors 灯火類 lighting"><td class='num'>263318</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Reflectors</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263320 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; turn signal light assemblies 灯火類 lighting"><td class='num'>263320</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Turn Signal Light Assemblies</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263322 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; accessory lighting &gt; off road lighting 灯火類 lighting"><td class='num'>263322</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Accessory Lighting &gt; Off Road Lighting</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263323 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; accessory lighting &gt; warning lights 灯火類 lighting"><td class='num'>263323</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Accessory Lighting &gt; Warning Lights</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263324 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; accessory lighting &gt; accessory &amp; accent lighting 灯火類 lighting"><td class='num'>263324</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Accessory Lighting &gt; Accessory &amp; Accent Lighting</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="263325 atv, side-by-side &amp; utv parts &amp; accessories &gt; lighting &amp; lamps &gt; accessory lighting &gt; light bars 灯火類 lighting"><td class='num'>263325</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Lighting &amp; Lamps &gt; Accessory Lighting &gt; Light Bars</td><td><span class='mk mk-ca'>注意</span></td><td>灯火類</td></tr>
+<tr data-search="33675 car &amp; truck parts &amp; accessories &gt; interior parts &amp; accessories &gt; gauges &gt; instrument clusters メーターパネル・スピードメーター odometer"><td class='num'>33675</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Interior Parts &amp; Accessories &gt; Gauges &gt; Instrument Clusters</td><td><span class='mk mk-ca'>注意</span></td><td>メーターパネル・スピードメーター</td></tr>
+<tr data-search="178012 motorcycle &amp; scooter parts &amp; accessories &gt; instruments &amp; gauges &gt; instrument clusters メーターパネル・スピードメーター odometer"><td class='num'>178012</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Instruments &amp; Gauges &gt; Instrument Clusters</td><td><span class='mk mk-ca'>注意</span></td><td>メーターパネル・スピードメーター</td></tr>
+<tr data-search="184858 commercial truck parts &gt; instruments, dials &amp; gauges &gt; speedometers メーターパネル・スピードメーター odometer"><td class='num'>184858</td><td>Commercial Truck Parts &gt; Instruments, Dials &amp; Gauges &gt; Speedometers</td><td><span class='mk mk-ca'>注意</span></td><td>メーターパネル・スピードメーター</td></tr>
+<tr data-search="263121 atv, side-by-side &amp; utv parts &amp; accessories &gt; instruments &amp; gauges &gt; instrument clusters メーターパネル・スピードメーター odometer"><td class='num'>263121</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Instruments &amp; Gauges &gt; Instrument Clusters</td><td><span class='mk mk-ca'>注意</span></td><td>メーターパネル・スピードメーター</td></tr>
+<tr data-search="52638 car &amp; truck parts &amp; accessories &gt; exterior parts &amp; accessories &gt; license plates &amp; frames ナンバープレート関連品 plate"><td class='num'>52638</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Exterior Parts &amp; Accessories &gt; License Plates &amp; Frames</td><td><span class='mk mk-ca'>注意</span></td><td>ナンバープレート関連品</td></tr>
+<tr data-search="179747 motorcycle &amp; scooter parts &amp; accessories &gt; body &amp; frame &gt; license plates, frames &amp; holders ナンバープレート関連品 plate"><td class='num'>179747</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Body &amp; Frame &gt; License Plates, Frames &amp; Holders</td><td><span class='mk mk-ca'>注意</span></td><td>ナンバープレート関連品</td></tr>
+<tr data-search="263166 atv, side-by-side &amp; utv parts &amp; accessories &gt; body &amp; frame &gt; license plates, frames &amp; holders ナンバープレート関連品 plate"><td class='num'>263166</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Body &amp; Frame &gt; License Plates, Frames &amp; Holders</td><td><span class='mk mk-ca'>注意</span></td><td>ナンバープレート関連品</td></tr>
+<tr data-search="26450 boat parts &gt; accessories &amp; gear &gt; safety gear &amp; devices 消火器・ガスボンベ pressurised"><td class='num'>26450</td><td>Boat Parts &gt; Accessories &amp; Gear &gt; Safety Gear &amp; Devices</td><td><span class='mk mk-ca'>注意</span></td><td>消火器・ガスボンベ</td></tr>
+<tr data-search="33722 safety &amp; security accessories &gt; safety &gt; fire extinguishers 消火器・ガスボンベ pressurised"><td class='num'>33722</td><td>Safety &amp; Security Accessories &gt; Safety &gt; Fire Extinguishers</td><td><span class='mk mk-ex'>外す</span></td><td>消火器・ガスボンベ</td></tr>
+<tr data-search="261434 rv, trailer &amp; camper parts &amp; accessories &gt; gas systems &gt; gas cylinders 消火器・ガスボンベ pressurised"><td class='num'>261434</td><td>RV, Trailer &amp; Camper Parts &amp; Accessories &gt; Gas Systems &gt; Gas Cylinders</td><td><span class='mk mk-ex'>外す</span></td><td>消火器・ガスボンベ</td></tr>
+<tr data-search="33725 car &amp; truck parts &amp; accessories &gt; interior parts &amp; accessories &gt; interior safety &gt; seat belts &amp; parts シートベルト・レーシングハーネス seatbelt"><td class='num'>33725</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Interior Parts &amp; Accessories &gt; Interior Safety &gt; Seat Belts &amp; Parts</td><td><span class='mk mk-ex'>外す</span></td><td>シートベルト・レーシングハーネス</td></tr>
+<tr data-search="173677 performance &amp; racing parts &gt; safety equipment &gt; head &amp; neck restraints シートベルト・レーシングハーネス seatbelt"><td class='num'>173677</td><td>Performance &amp; Racing Parts &gt; Safety Equipment &gt; Head &amp; Neck Restraints</td><td><span class='mk mk-ca'>注意</span></td><td>シートベルト・レーシングハーネス</td></tr>
+<tr data-search="175570 performance &amp; racing parts &gt; auto performance parts &gt; interior &gt; racing harnesses シートベルト・レーシングハーネス seatbelt"><td class='num'>175570</td><td>Performance &amp; Racing Parts &gt; Auto Performance Parts &gt; Interior &gt; Racing Harnesses</td><td><span class='mk mk-ex'>外す</span></td><td>シートベルト・レーシングハーネス</td></tr>
+<tr data-search="263131 atv, side-by-side &amp; utv parts &amp; accessories &gt; seats, parts &amp; accessories &gt; seat belts, harnesses &amp; parts シートベルト・レーシングハーネス seatbelt"><td class='num'>263131</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Seats, Parts &amp; Accessories &gt; Seat Belts, Harnesses &amp; Parts</td><td><span class='mk mk-ex'>外す</span></td><td>シートベルト・レーシングハーネス</td></tr>
+<tr data-search="33704 car &amp; truck parts &amp; accessories &gt; interior parts &amp; accessories &gt; steering wheels &amp; horn buttons ステアリングホイール steering"><td class='num'>33704</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Interior Parts &amp; Accessories &gt; Steering Wheels &amp; Horn Buttons</td><td><span class='mk mk-ca'>注意</span></td><td>ステアリングホイール</td></tr>
+<tr data-search="184872 commercial truck parts &gt; interior &gt; steering wheels ステアリングホイール steering"><td class='num'>184872</td><td>Commercial Truck Parts &gt; Interior &gt; Steering Wheels</td><td><span class='mk mk-ca'>注意</span></td><td>ステアリングホイール</td></tr>
+<tr data-search="263109 atv, side-by-side &amp; utv parts &amp; accessories &gt; steering wheels, handlebars &amp; grips &gt; steering wheels ステアリングホイール steering"><td class='num'>263109</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Steering Wheels, Handlebars &amp; Grips &gt; Steering Wheels</td><td><span class='mk mk-ca'>注意</span></td><td>ステアリングホイール</td></tr>
+<tr data-search="50071 rv, trailer &amp; camper parts &amp; accessories &gt; trailer tires &amp; wheels &gt; tires タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>50071</td><td>RV, Trailer &amp; Camper Parts &amp; Accessories &gt; Trailer Tires &amp; Wheels &gt; Tires</td><td><span class='mk mk-ex'>外す</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="88533 motorcycle &amp; scooter parts &amp; accessories &gt; wheels, tires &amp; parts &gt; wheel &amp; tire packages タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>88533</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Wheels, Tires &amp; Parts &gt; Wheel &amp; Tire Packages</td><td><span class='mk mk-ex'>外す</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="124313 motorcycle &amp; scooter parts &amp; accessories &gt; wheels, tires &amp; parts &gt; tires タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>124313</td><td>Motorcycle &amp; Scooter Parts &amp; Accessories &gt; Wheels, Tires &amp; Parts &gt; Tires</td><td><span class='mk mk-ex'>外す</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="171111 golf cart parts &amp; accessories &gt; golf cart wheels &amp; tires タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>171111</td><td>Golf Cart Parts &amp; Accessories &gt; Golf Cart Wheels &amp; Tires</td><td><span class='mk mk-ca'>注意</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="175573 performance &amp; racing parts &gt; auto performance parts &gt; wheels &amp; tires &gt; racing tires タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>175573</td><td>Performance &amp; Racing Parts &gt; Auto Performance Parts &gt; Wheels &amp; Tires &gt; Racing Tires</td><td><span class='mk mk-ex'>外す</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="175574 performance &amp; racing parts &gt; auto performance parts &gt; wheels &amp; tires &gt; drag racing slicks タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>175574</td><td>Performance &amp; Racing Parts &gt; Auto Performance Parts &gt; Wheels &amp; Tires &gt; Drag Racing Slicks</td><td><span class='mk mk-ex'>外す</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="175575 performance &amp; racing parts &gt; auto performance parts &gt; wheels &amp; tires &gt; dot-r compound タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>175575</td><td>Performance &amp; Racing Parts &gt; Auto Performance Parts &gt; Wheels &amp; Tires &gt; DOT-R Compound</td><td><span class='mk mk-ex'>外す</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="175576 performance &amp; racing parts &gt; auto performance parts &gt; wheels &amp; tires &gt; racing tire &amp; wheel packages タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>175576</td><td>Performance &amp; Racing Parts &gt; Auto Performance Parts &gt; Wheels &amp; Tires &gt; Racing Tire &amp; Wheel Packages</td><td><span class='mk mk-ex'>外す</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="175577 performance &amp; racing parts &gt; auto performance parts &gt; wheels &amp; tires &gt; other タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>175577</td><td>Performance &amp; Racing Parts &gt; Auto Performance Parts &gt; Wheels &amp; Tires &gt; Other</td><td><span class='mk mk-ca'>注意</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="179680 car &amp; truck parts &amp; accessories &gt; wheels, tires &amp; parts &gt; tires タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>179680</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Wheels, Tires &amp; Parts &gt; Tires</td><td><span class='mk mk-ex'>外す</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="179681 car &amp; truck parts &amp; accessories &gt; wheels, tires &amp; parts &gt; wheel &amp; tire packages タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>179681</td><td>Car &amp; Truck Parts &amp; Accessories &gt; Wheels, Tires &amp; Parts &gt; Wheel &amp; Tire Packages</td><td><span class='mk mk-ex'>外す</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="180242 aviation parts &amp; accessories &gt; aircraft tires &amp; tubes タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>180242</td><td>Aviation Parts &amp; Accessories &gt; Aircraft Tires &amp; Tubes</td><td><span class='mk mk-ex'>外す</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="184924 commercial truck parts &gt; wheels &amp; tires &gt; tires タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>184924</td><td>Commercial Truck Parts &gt; Wheels &amp; Tires &gt; Tires</td><td><span class='mk mk-ex'>外す</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="184928 commercial truck parts &gt; wheels &amp; tires &gt; other wheels &amp; tires タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>184928</td><td>Commercial Truck Parts &gt; Wheels &amp; Tires &gt; Other Wheels &amp; Tires</td><td><span class='mk mk-ca'>注意</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="261954 rv, trailer &amp; camper parts &amp; accessories &gt; trailer tires &amp; wheels &gt; wheel &amp; tire packages タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>261954</td><td>RV, Trailer &amp; Camper Parts &amp; Accessories &gt; Trailer Tires &amp; Wheels &gt; Wheel &amp; Tire Packages</td><td><span class='mk mk-ex'>外す</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="263048 atv, side-by-side &amp; utv parts &amp; accessories &gt; wheels, tires &amp; parts &gt; tires タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>263048</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Wheels, Tires &amp; Parts &gt; Tires</td><td><span class='mk mk-ex'>外す</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="263051 atv, side-by-side &amp; utv parts &amp; accessories &gt; wheels, tires &amp; parts &gt; wheel &amp; tire packages タイヤ（ホイール＋タイヤ含む） tire"><td class='num'>263051</td><td>ATV, Side-by-Side &amp; UTV Parts &amp; Accessories &gt; Wheels, Tires &amp; Parts &gt; Wheel &amp; Tire Packages</td><td><span class='mk mk-ex'>外す</span></td><td>タイヤ（ホイール＋タイヤ含む）</td></tr>
+<tr data-search="133193 performance &amp; racing parts &gt; auto performance parts &gt; electrical components &gt; chips, programmers チューナー（chips, programmers） tuner"><td class='num'>133193</td><td>Performance &amp; Racing Parts &gt; Auto Performance Parts &gt; Electrical Components &gt; Chips, Programmers</td><td><span class='mk mk-ex'>外す</span></td><td>チューナー（Chips, Programmers）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="step" id="tags">
+    <span class="step-no">3</span>
+    <h2>タグの候補（案）</h2>
+    <div class="proposalbox">
+      <span class="t">これは案です</span><br>
+      タグの名前・送料額・採否は出品者が決めます。このページは数値（送料額など）を一切決めていません。数値はTagShippingシート側で出品者が設定するものです。
+    </div>
+    <p><span class="lab fact">Fact</span> 一括シートのタグ1行は「送料額（固定額）・利益率・手数料率・関税モード・想定関税閾値・商品状態」などをまとめて呼び出す設定キーです。今のタグの送料額は<strong>固定額</strong>で、行ごとの実際の重量・サイズを見ません。ポリシーの自動選定も、新品/中古・配送区分(eco/xp)・想定関税・送料上限カテゴリだけで決まり、<strong>重量・サイズは見ません</strong>。フィギュア・カードは同じタグ内で重量・サイズの振れ幅が小さいためこの方式で足りますが、部品は同じ「部品」でも重さ・大きさの振れ幅が大きく、関税もカテゴリごとに違うため、部品に既存タグの「常識」をそのまま当てはめられません（詳細は5章の出典にある要因文書を参照）。</p>
+
+    <h3>候補の3つの軸（案）</h3>
+    <p><strong>軸A　送り方の区分</strong>（部品ごとに<strong>実測して</strong>決める。部品の種類だけでは決めない）</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>区分</th><th>目安となる範囲</th><th>ラベル</th></tr></thead>
+        <tbody>
+          <tr><td><strong>小型</strong></td><td>日本郵便の小形包装物／エコノミー系で送れる目安：2kg以内・長さ+幅+厚さ90cm以内・最長60cm以内</td><td><span class="lab fact">Fact</span>（小形包装物の上限） / <span class="lab unknown">Unknown</span>（CPaSS Economyの公式上限）</td></tr>
+          <tr><td><strong>中型</strong></td><td>小型の上限を超え、EMS／国際小包／クーリエで送る：30kg以内・長さ1.05〜1.5m以内</td><td><span class="lab fact">Fact</span>（日本郵便の上限）</td></tr>
+          <tr><td><strong>大型</strong></td><td>日本郵便の上限（30kg・1.5m等）を超える：クーリエのみ</td><td><span class="lab infer">目安</span>（クーリエの上限は<span class="lab unknown">Unknown</span>）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>軸B　新品／中古</strong>（既存の軸をそのまま使う案）</p>
+    <p>再出品・仕入れ品は「中古」扱いというこれまでのルールに合わせます。「新品」タグは、出品者が実際に新品在庫を出品する場合のみ使う案です。</p>
+
+    <p><strong>軸C　車／バイク</strong></p>
+    <p><span class="lab fact">Fact</span> 通商拡大法232条の自動車部品関税リスト（日本製15%、2025-09-16〜）は自動車（Car & Truck）部品向けの記載です。<span class="lab unknown">Unknown</span> バイク部品がこのリストに載っているかどうかは確認できていません。載っているかどうかで想定関税の前提が変わるため、車とバイクを分ける案です。ATV・その他はバイクに揃える案（要検証）です。</p>
+
+    <h3>候補タグ名（案）</h3>
+    <p>軸A×B×Cを組み合わせた名前の案です。名前・送料額・採否は出品者が決めます。</p>
+    <p>
+      <span class="tagname">車部品 小型 中古</span><span class="tagname">車部品 中型 中古</span><span class="tagname">車部品 大型 中古</span>
+      <span class="tagname">バイク部品 小型 中古</span><span class="tagname">バイク部品 中型 中古</span><span class="tagname">バイク部品 大型 中古</span>
+    </p>
+    <p>新品を出品する場合の案（同じ組み合わせ）:</p>
+    <p>
+      <span class="tagname">車部品 小型 新品</span><span class="tagname">車部品 中型 新品</span><span class="tagname">車部品 大型 新品</span>
+      <span class="tagname">バイク部品 小型 新品</span><span class="tagname">バイク部品 中型 新品</span><span class="tagname">バイク部品 大型 新品</span>
+    </p>
+    <div class="note">
+      <span class="t">タイヤにタグはありません</span><br>
+      タイヤは「外す」（保留して質問）対象のため、タグを作らずデータを書き込みません。「外す」印が付いたカテゴリの行は、すべてタグを持ちません（保留中の行にタグは書かない）。手数料がタイヤだけ9.5%（通常11.5%）という違いは、出品者がタイヤの出品を決めた場合にのみ関係します。
+    </div>
+
+    <h3>部位別の送り方の区分（目安）</h3>
+    <p><span class="lab infer">目安</span> 部品の種類から見た、送り方の区分のだいたいの傾向です。実際は<strong>実測で決めます。</strong>同じ部品名でも車種・年式で大きさが変わります。</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>送り方の区分</th><th>代表的な部品（例）</th></tr></thead>
+        <tbody>
+          <tr><td><strong>小型</strong></td><td>スイッチ・エンブレム・センサー・キー・ECU・メーター・シフトノブ</td></tr>
+          <tr><td><strong>中型</strong></td><td>ミラー本体・ライト類・キャリパー・ラジエーター・小さな外装</td></tr>
+          <tr><td><strong>大型</strong></td><td>バンパー・ボンネット・ドア・シート・ホイール4本</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>タグが決めないもの</h3>
+    <ul>
+      <li><strong>出品してよいかどうか</strong>（2章の印・保留して質問する仕組みで決まる。タグとは別の軸）</li>
+      <li><strong>categoryId</strong>（2章のカテゴリ参照データで決まる。タグとは別の軸）</li>
+      <li><strong>部品ごとの関税</strong>（HTSコード・232条リストの該当／非該当は個別確認が必要。<span class="lab unknown">Unknown</span>な部分が多い）</li>
+    </ul>
+  </section>
+
+  <section class="step" id="caution">
+    <span class="step-no">4</span>
+    <h2>重量・サイズなどの注意点</h2>
+
+    <h3>(a) 運送の上限</h3>
+    <p><span class="lab fact">Fact</span> 日本郵便（対米国）の公式な重量・サイズ上限です。</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>方法</th><th>重量上限</th><th>サイズ上限</th><th>ラベル</th></tr></thead>
+        <tbody>
+          <tr><td>EMS</td><td>30kg</td><td>最大の長さ1.5m以内、長さ＋横周2.75m以内</td><td><span class="lab fact">Fact</span></td></tr>
+          <tr><td>小形包装物</td><td>2kg</td><td>長さ＋幅＋厚さ＝90cm以内（最長60cm以内）</td><td><span class="lab fact">Fact</span></td></tr>
+          <tr><td>国際小包（対米国）</td><td>30kg</td><td>最大の長さ1.05m、長さ＋横周2m以内</td><td><span class="lab fact">Fact</span></td></tr>
+          <tr><td>CPaSS Economy／SpeedPAK Economy</td><td>Unknown</td><td>Unknown</td><td><span class="lab unknown">Unknown</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted small">CPaSS Economy／SpeedPAK Economyの公式な重量・サイズ上限は、export.ebay.com・ebay.com/helpで検索・取得を試みましたが、公式ページ上で見つけられませんでした（Unknown）。「25kgまで」という記述をどこかで見かけても、個人ブログ等での言及であれば事実として採用していません。</p>
+
+    <h3>(b) 部位別の注意</h3>
+    <p><span class="lab infer">目安</span> 特に断りのない部分は目安（実測・実物で変わる可能性あり）です。<span class="lab fact">Fact</span> の部分は2章の印一覧・公式資料に基づく事実です。</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>部位</th><th>注意点</th></tr></thead>
+        <tbody>
+          <tr><td>ライト類</td><td><span class="lab infer">目安</span> 割れ物。ヘッドライトは長辺が大きくなりやすく、中型以上になりやすい。<br><span class="lab fact">Fact</span> DOT／SAE認証・路上使用可という表示は、商品にその表示がない限り書かない（灯火類＝要注意、2章の印一覧参照）。HIDコンバージョンキットは出品不可。</td></tr>
+          <tr><td>ミラー</td><td><span class="lab infer">目安</span> ガラス部分は割れ物。本体とガラスを分けて梱包する。</td></tr>
+          <tr><td>ガラス</td><td><span class="lab fact">Fact</span> 「外す」対象（保留して質問）。FMVSS 205（DOTマーク必須）、割れ物（2章の印一覧「glass」参照）。</td></tr>
+          <tr><td>ボディパネル・バンパー</td><td><span class="lab infer">目安</span> 長さが日本郵便の上限を超えやすく、クーリエ前提になりやすい。梱包費がかさみやすい。</td></tr>
+          <tr><td>ホイール</td><td><span class="lab infer">目安</span> 1本でも重い。4本セットは大型になりやすい。</td></tr>
+          <tr><td>タイヤ</td><td><span class="lab fact">Fact</span> 「外す」対象（保留して質問）。FMVSS 109/119/139・49 CFR 574.5（DOTマーク必須、2章の印一覧「tire」参照）。ホイール＋タイヤのセットも対象。</td></tr>
+          <tr><td>エンジン・ミッション</td><td><span class="lab fact">Fact</span> 30kg超は日本郵便の上限を超え発送できない（上の運送の上限表参照）。<span class="lab unknown">Unknown</span> クーリエ・貨物での可否。</td></tr>
+          <tr><td>マフラー・排気</td><td><span class="lab infer">目安</span> 長物になりやすい。<span class="lab fact">Fact</span> 触媒コンバーターを内蔵する場合は「外す」対象（2章の印一覧「catalytic」参照）。</td></tr>
+          <tr><td>ラジエーター・コンデンサー</td><td><span class="lab infer">目安</span> フィンが潰れやすい。<span class="lab fact">Fact</span> 冷媒が残っている場合は「外す」対象（2章の印一覧「ac」参照、EPA規則609）。</td></tr>
+          <tr><td>ECU・メーター</td><td><span class="lab infer">目安</span> 小型・軽い。<span class="lab fact">Fact</span> 純正ECUのみ可、チューン済み等は「外す」対象（印一覧「ecu」参照）。メーターは表示された距離をそのまま記載し、走行距離を保証しない（印一覧「odometer」参照）。</td></tr>
+          <tr><td>キー</td><td><span class="lab infer">目安</span> 小型。<span class="lab fact">Fact</span> 複製・解読・プログラミング装置は出品不可（印一覧「key」参照）。</td></tr>
+          <tr><td>シート</td><td><span class="lab infer">目安</span> 大型になりやすい。エアバッグ内蔵の座席（サイドエアバッグ等）は、エアバッグ関連部品の出品禁止ポリシー（印一覧「airbag」参照）に抵触しないか確認したほうがよい。</td></tr>
+          <tr><td>燃料タンク</td><td><span class="lab fact">Fact</span> 空であることを確認する（印一覧「fueltank」参照、危険物）。</td></tr>
+          <tr><td>バッテリー・液体・スプレー</td><td><span class="lab fact">Fact</span> 「外す」対象（保留して質問）。危険物ポリシー対象で国際発送不可（印一覧「battery」「chemical」参照）。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>(c) 関税と手数料</h3>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>項目</th><th>内容</th><th>ラベル</th></tr></thead>
+        <tbody>
+          <tr><td>232条リスト該当部品（日本製）</td><td>MFN関税＋232条上乗せの合計15%（2025-09-16〜）</td><td><span class="lab fact">Fact</span></td></tr>
+          <tr><td>232条リスト非該当部品の関税率</td><td>確認できていない（個別のHTSコード分類が必要）</td><td><span class="lab unknown">Unknown</span></td></tr>
+          <tr><td>手数料（ストアなし／スタータープラン）</td><td>13.6%（$7,500まで）＋注文ごと$0.30（$10以下）または$0.40（$10超）</td><td><span class="lab fact">Fact</span></td></tr>
+          <tr><td>手数料（ベーシックストア以上、Motors Parts &amp; Accessories）</td><td>11.5%（$1,000まで）。<strong>タイヤのみ9.5%</strong></td><td><span class="lab fact">Fact</span></td></tr>
+          <tr><td>少額免税（de minimis）</td><td>2025-08-29に全世界向けで停止。郵便向け簡易課税オプションはその日から6か月間のみ（終了日2026-02-28は目安）</td><td><span class="lab fact">Fact</span>／<span class="lab infer">目安</span>（終了日）</td></tr>
+          <tr><td>DDP義務化</td><td>eBayは2025-10-17以降、日本・韓国発→米国・単価$2,500未満の商品はDDP（関税込み）通関を要求</td><td><span class="lab fact">Fact</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>(d) DDPについて</h3>
+    <p><span class="lab fact">Fact</span> DDP（Delivered Duty Paid）は関税を先に支払い済みにして送る方法、DDU（Delivered Duty Unpaid）は関税を買い手側で払う方法です。一括シートのタグ（R列）はDDP／DDUをタグ単位で設定しますが、<strong>行ごとの部品が実際にどの関税カテゴリ（232条リスト該当か非該当か）に当たるかまでは自動チェックしません。</strong>2025-10-17以降、日本発→米国・$2,500未満の商品はeBay側がDDPを要求しているため、この点は部品タグ設計でも前提として踏まえる必要があります。</p>
+  </section>
+
+  <section class="step" id="sources">
+    <span class="step-no">5</span>
+    <h2>出典</h2>
+    <p>参照データ（カテゴリ参照・Item Specifics）はGitHub Pagesで公開しています。<br>
+    <a href="https://naokijodan.github.io/bulksheet-ebay-motors-categories/" target="_blank" rel="noopener">https://naokijodan.github.io/bulksheet-ebay-motors-categories/</a></p>
+
+    <h3>使用した資料（ローカルファイル名）</h3>
+    <ul>
+      <li>motors-category-reference.json — 19区分・葉カテゴリ1,891件の参照データ（id・path・必須Item Specifics・印）</li>
+      <li>category_marks.csv — 印付きカテゴリ241件（外す91／注意150）の手動メンテナンスデータ</li>
+      <li>jp_listing_survey_2026-09-17.csv — 日本発の現在出品中の件数・価格サンプル（読み取り専用API調査）</li>
+      <li>parts-shipping-profit-factors.md — 送料・利益・関税・出品制約の要因整理（レビュー済み）</li>
+      <li>HANDOVER.md（2026-09-17／09-18／09-19節）— 印の意味・保留して質問する方式の決定記録</li>
+    </ul>
+
+    <h3>公式資料（日本郵便、対米国）</h3>
+    <ul>
+      <li>EMS: <a href="https://www.post.japanpost.jp/service/send/oversea/list/delivery/ems/size/" target="_blank" rel="noopener">https://www.post.japanpost.jp/service/send/oversea/list/delivery/ems/size/</a></li>
+      <li>小形包装物: <a href="https://www.post.japanpost.jp/service/send/oversea/list/delivery/small_packing.html" target="_blank" rel="noopener">https://www.post.japanpost.jp/service/send/oversea/list/delivery/small_packing.html</a></li>
+      <li>国際小包（一般）: <a href="https://www.post.japanpost.jp/service/send/oversea/list/delivery/i_parcel.html" target="_blank" rel="noopener">https://www.post.japanpost.jp/service/send/oversea/list/delivery/i_parcel.html</a></li>
+      <li>国別情報（アメリカ合衆国）: <a href="https://www.post.japanpost.jp/cgi-kokusai/country.php?cid=7" target="_blank" rel="noopener">https://www.post.japanpost.jp/cgi-kokusai/country.php?cid=7</a></li>
+    </ul>
+
+    <h3>公式資料（関税・手数料・eBayポリシー）</h3>
+    <ul>
+      <li>eBay手数料（ストアなし）: <a href="https://www.ebay.com/help/selling/fees-credits-invoices/selling-fees?id=4822" target="_blank" rel="noopener">ebay.com/help …selling-fees?id=4822</a></li>
+      <li>eBay手数料（ストア、Parts &amp; Accessories）: <a href="https://www.ebay.com/help/selling/fees-credits-invoices/store-selling-fees?id=4809" target="_blank" rel="noopener">ebay.com/help …store-selling-fees?id=4809</a></li>
+      <li>通商拡大法232条・日米協定の関税関連実施（Federal Register 2025-17908）: <a href="https://www.federalregister.gov/documents/2025/09/16/2025-17908/implementing-certain-tariff-related-elements-of-the-united-states-japan-agreement" target="_blank" rel="noopener">federalregister.gov/…/2025-17908</a></li>
+      <li>少額免税（de minimis）停止の大統領令: <a href="https://www.whitehouse.gov/presidential-actions/2025/07/suspending-duty-free-de-minimis-treatment-for-all-countries/" target="_blank" rel="noopener">whitehouse.gov …de-minimis-treatment-for-all-countries</a></li>
+      <li>日本・韓国発パッケージの発送ポリシー（DDP義務化）: <a href="https://export.ebay.com/jp/policies/shipping-policy-for-packages-from-japan-and-korea-to-the-united-states/" target="_blank" rel="noopener">export.ebay.com/jp/policies/…japan-and-korea…</a></li>
+      <li>車両部品・アクセサリーポリシー（エアバッグ禁止等）: <a href="https://www.ebay.com/help/policies/prohibited-restricted-items/vehicle-parts-accessories-policy?id=4293" target="_blank" rel="noopener">ebay.com/help …vehicle-parts-accessories-policy?id=4293</a></li>
+      <li>危険物ポリシー（バッテリー等）: <a href="https://www.ebay.com/help/policies/prohibited-restricted-items/hazardous-materials-policy?id=4335" target="_blank" rel="noopener">ebay.com/help …hazardous-materials-policy?id=4335</a></li>
+    </ul>
+    <p class="muted small">CSMS #66242844（232条15%の再確認）・CSMS #65054270（鉄鋼・アルミ232条との重複適用なし）は税関公式配信（CBP govdelivery）で確認済みです。federalregister.govのページは自動取得がブロックされる場合があり、その際はCSMSでの再確認を優先しています。</p>
+  </section>
+
+  <footer>
+    ※このページの数値・印・件数は2026年9月時点のローカル調査・参照データに基づきます。eBay・日本郵便・米国政府の公式発表により変わることがあります。件数・価格はAPIによる推定値であり、販売実績ではありません。<br>
+    タグの名前・送料額・採否、出品する・しないの判断は、すべて出品者が行います。このページ自体は出品可否を決めません。
+  </footer>
+</div>
+
+<script>
+function filterMarkedTable(){
+  var q = document.getElementById('markSearch').value.trim().toLowerCase();
+  var rows = document.querySelectorAll('#markedTable tbody tr');
+  var hits = 0;
+  rows.forEach(function(r){
+    var key = r.getAttribute('data-search') || '';
+    var show = q === '' || key.indexOf(q) !== -1;
+    r.hidden = !show;
+    if (show) hits++;
+  });
+  var hc = document.getElementById('hitCount');
+  if (hc) hc.textContent = q === '' ? (rows.length + '件中 ' + rows.length + '件を表示') : (rows.length + '件中 ' + hits + '件が一致');
+}
+document.addEventListener('DOMContentLoaded', filterMarkedTable);
+</script>
+</body>
+</html>
